@@ -12,7 +12,7 @@ This application will serve as the customer portal for managing your account wit
 
 - [ ] Users can see an estimated total cost of the monthly bill based on their selected plan(s). Hint: user can have many plans.  
 ## Technical Requirements :computer:
-You must use the following technology: 
+### You must use the following technology: 
 - Angular
 - Spring Boot
 - Spring Data
@@ -21,9 +21,11 @@ You must use the following technology:
 - GitHub
 
 The application must be a single-page application. The login screen may be a separate page if desired, however, the rest of the application must be routed by Angular. 
-Example links: 
-Home 
-Manage Devices
-Manage Plans
-My Bill
-Given that this is a customer portal, there will be keen attention placed on UI/UX.
+
+### Example links: 
+* Home 
+* Manage Devices
+* Manage Plans
+* My Bill
+
+*Given that this is a customer portal, there will be keen attention placed on UI/UX.*
