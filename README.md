@@ -29,3 +29,15 @@ The application must be a single-page application. The login screen may be a sep
 * My Bill
 
 *Given that this is a customer portal, there will be keen attention placed on UI/UX.*
+
+
+## Phone Plan Features 
+| Base Plan     | Mid-Plan      | Super Plan    |
+| ------------- |:-------------:| -------------:|
+| 1 line        | up to 4 lines | up to 6 lines |
+| $50 flat rate | $35 flat rate | $60 flat rate |
+| $0 per line   | $25 per line  | $20 per line  |
+| ∞ talk/text   | ∞ talk/text   | ∞ talk/text   |
+| 5G access     | 5G access     | 5G access     |
+| 4GB of data   | 50GB of data  | 100GB of data |
+| no Hotspot    | 10GB Hotspot  | 30GB Hotspot  |
