@@ -62,9 +62,19 @@ nav {
   color: var(--c-blue);
 }
 
-.table-light {
+.white-table {
   background-color: var(--c-white);
   color: var(--c-blue);
+}
+
+.blue-table {
+  background-color: var(--c-blue);
+  color: var(--c-white);
+}
+
+.green-table {
+  background-color: var(--c-green);
+  color: var(--c-white);
 }
 
 /* 
