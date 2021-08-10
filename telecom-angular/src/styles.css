@@ -1,59 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
-body{
-	background-color: #fbf7f3;
+:root {
+  --c-white: #fbf7f3;
+  --c-blue: #20283d;
+  --c-green: #426e5d;
+  --c-peach: #e5b083;
 }
-nav{
-	background-color: #e5b083;
-	color: #fbf7f3;
-	margin-bottom: 30px;
+
+body {
+  background-color: var(--c-white);
+}
+nav {
+  background-color: var(--c-peach);
+  color: var(--c-white);
+  margin-bottom: 30px;
 }
 .navbar-brand,
-.nav-link{
-	color: #20283d;
+.nav-link {
+  color: var(--c-blue);
 }
 .navbar-brand:hover,
-.nav-link:hover{
-	color: #426e5d;
+.nav-link:hover {
+  color: var(--c-green);
 }
 
-
-.card{
-	border-style: none;
-	padding: 20px;
-	height: 100%;
+.card {
+  border-style: none;
+  padding: 20px;
+  height: 100%;
 }
-.row{
-	margin-bottom: 30px;
-}
-
-.blue-btn{
-	background-color: #20283d;
-	border-color: #20283d;
-	color: #fbf7f3;
-}
-.blue-btn:hover{
-	color: #e5b083;
+.row {
+  margin-bottom: 30px;
 }
 
-.blue-card{
-	background-color: #20283d;
-	color: #fbf7f3;
+.blue-btn {
+  background-color: var(--c-blue);
+  border-color: var(--c-blue);
+  color: var(--c-white);
 }
-.green-card{
-	background-color: #426e5d;
-	color: #fbf7f3;
+.blue-btn:hover {
+  color: var(--c-peach);
 }
-.white-card{
-	border-style: none;
-	background-color: #fbf7f3;
-	color: #20283d;
+
+.blue-card {
+  background-color: var(--c-blue);
+  color: var(--c-white);
 }
-.peach-card{
-	border-style: none;
-	background-color: #e5b083;
-	color: #20283d;
+.green-card {
+  background-color: var(--c-green);
+  color: var(--c-white);
+}
+.white-card {
+  border-style: none;
+  background-color: var(--c-white);
+  color: var(--c-blue);
+}
+.peach-card {
+  border-style: none;
+  background-color: var(--c-peach);
+  color: var(--c-blue);
+}
+
+.table-light {
+  background-color: var(--c-white);
+  color: var(--c-blue);
 }
 
 /* 

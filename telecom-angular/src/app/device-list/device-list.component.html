@@ -1,0 +1,19 @@
+<!-- Todo: figure out how to change background color of table -->
+<div class="container">
+  <table class="table table-light">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Number</th>
+        <th scope="col">Plan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let device of deviceList">
+        <td>{{ device.name }}</td>
+        <td>{{ device.phoneNumber }}</td>
+        <td>{{ device.plan }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
