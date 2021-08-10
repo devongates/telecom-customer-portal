@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+body{
+	background-color: #fbf7f3;
+}
+nav{
+	background-color: #e5b083;
+	color: #fbf7f3;
+	margin-bottom: 30px;
+}
+.navbar-brand,
+.nav-link{
+	color: #20283d;
+}
+.navbar-brand:hover,
+.nav-link:hover{
+	color: #426e5d;
+}
+
+
+.card{
+	border-style: none;
+	padding: 20px;
+	height: 100%;
+}
+.row{
+	margin-bottom: 30px;
+}
+
+.blue-btn{
+	background-color: #20283d;
+	border-color: #20283d;
+	color: #fbf7f3;
+}
+.blue-btn:hover{
+	color: #e5b083;
+}
+
+.blue-card{
+	background-color: #20283d;
+	color: #fbf7f3;
+}
+.green-card{
+	background-color: #426e5d;
+	color: #fbf7f3;
+}
+.white-card{
+	border-style: none;
+	background-color: #fbf7f3;
+	color: #20283d;
+}
+.peach-card{
+	border-style: none;
+	background-color: #e5b083;
+	color: #20283d;
+}
+
+/* 
+#20283d blue
+#426e5d green
+#e5b083	peach
+#fbf7f3 white
+*/
