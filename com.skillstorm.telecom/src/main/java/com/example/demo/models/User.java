@@ -1,10 +1,13 @@
-package com.skillstorm.telecom.models;
+package com.example.demo.models;
+
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -29,6 +32,10 @@ public class User {
 	@Column(name = "PASSWORD")
 	// TODO: handle authentication and encryption
 	private String password;
+	
+	@OneToMany(mappedBy="user")
+	private Set<UserPlan> userPlans;
+	
 	
 	
 	
@@ -65,7 +72,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+
+	public Set<UserPlan> getUserPlans() { return userPlans; }
+	public void setUserPlans(Set<UserPlan> userPlans) { this.userPlans = userPlans; }
+
 	
 }

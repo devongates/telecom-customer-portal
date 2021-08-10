@@ -1,4 +1,6 @@
-package com.skillstorm.telecom.models;
+package com.example.demo.models;
+
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,12 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "USERPLAN")
 public class UserPlan {
+
 	
 	// ATTRIBUTES
 	
@@ -23,11 +26,16 @@ public class UserPlan {
 	
 	@ManyToOne
 	@JoinColumn(name = "USERPLAN_USER_ID", referencedColumnName = "USER_ID")
-	private int userId;
+	private User user;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "USERPLAN_PLAN_ID", referencedColumnName = "PLAN_ID")
-	private int planId;
+	private Plan plan;
+	
+	
+	
+	@OneToMany(mappedBy="userPlan")
+	private Set<Phone> phones;
 	
 	
 	
@@ -49,19 +57,25 @@ public class UserPlan {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getPlanId() {
-		return planId;
+	public Plan getPlan() {
+		return plan;
 	}
 
-	public void setPlanId(int planId) {
-		this.planId = planId;
+	public void setPlan(Plan plan) {
+		this.plan = plan;
 	}
+
+
+	public Set<Phone> getPhones() { return phones; }
+	public void setPhones(Set<Phone> phones) { this.phones = phones; }
+	
+	
 }

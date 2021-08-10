@@ -1,12 +1,14 @@
-package com.skillstorm.telecom.models;
+package com.example.demo.models;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -33,10 +35,14 @@ public class Plan {
 	@Column(name = "COST_PER_LINE")
 	private BigDecimal costPerLine;
 	
+	@OneToMany(mappedBy="plan")
+	private Set<UserPlan> userPlans;
+	
 	
 	
 	// CONSTRUCTORS
 	
+
 	public Plan() {
 		super();
 	}
@@ -76,4 +82,18 @@ public class Plan {
 	public void setCostPerLine(BigDecimal costPerLine) {
 		this.costPerLine = costPerLine;
 	}
+
+
+
+	public Set<UserPlan> getUserPlans() { 
+		return userPlans;
+	}
+
+	public void setUserPlans(Set<UserPlan> userPlans) {
+		this.userPlans = userPlans;
+	}
+	
+	
+	
+	
 }

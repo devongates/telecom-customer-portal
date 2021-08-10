@@ -1,4 +1,4 @@
-package com.skillstorm.telecom.models;
+package com.example.demo.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +24,7 @@ public class Phone {
 	
 	@ManyToOne
 	@JoinColumn(name = "PHONE_USERPLAN_ID")
-	private int userPlanId;
+	private UserPlan userPlan;
 	
 	@Column(name = "PHONE_NUMBER")
 	@NotNull
@@ -51,12 +51,12 @@ public class Phone {
 		this.id = id;
 	}
 
-	public int getUserPlanId() {
-		return userPlanId;
+	public UserPlan getUserPlan() {
+		return userPlan;
 	}
 
-	public void setUserPlanId(int userPlanId) {
-		this.userPlanId = userPlanId;
+	public void setUserPlan(UserPlan userPlan) {
+		this.userPlan = userPlan;
 	}
 
 	public String getPhoneNumber() {
