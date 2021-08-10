@@ -22,15 +22,24 @@ public class Phone {
 	@Column(name = "PHONE_ID")
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name = "PHONE_USERPLAN_ID")
-	private UserPlan userPlan;
-	
 	@Column(name = "PHONE_NUMBER")
 	@NotNull
 	@Pattern(regexp = "^[0-9]{10}$")
 	private String phoneNumber;
+	
+	@Column(name = "PHONE_NAME")
+	@NotNull
+	private String phoneName;
+	
+	@Column(name = "PHONE_TYPE")
+	@NotNull
+	private String phoneType;
 
+	@ManyToOne
+	@JoinColumn(name = "PHONE_USERPLAN_ID")
+	private UserPlan userPlan;
+	
+	
 	
 	
 	// CONSTRUCTORS
@@ -66,4 +75,12 @@ public class Phone {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	public String getPhoneName() { return phoneName; }
+	public void setPhoneName(String phoneName) { this.phoneName = phoneName; }
+
+	public String getPhoneType() { return phoneType; }
+	public void setPhoneType(String phoneType) { this.phoneType = phoneType; }
+	
+	
 }
