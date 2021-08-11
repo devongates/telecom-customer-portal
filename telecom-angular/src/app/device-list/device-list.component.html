@@ -1,19 +1,48 @@
 <!-- Todo: figure out how to change background color of table -->
 <div class="container">
-  <table class="table white-table">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Number</th>
-        <th scope="col">Plan</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let device of deviceList">
-        <td>{{ device.name }}</td>
-        <td>{{ device.phoneNumber }}</td>
-        <td>{{ device.plan }}</td>
-      </tr>
-    </tbody>
-  </table>
+	<table class="table white-table">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Number</th>
+				<th scope="col">Plan</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let device of deviceList">
+				<td>{{ device.phoneName }}</td>
+				<td>{{ device.phoneNumber }}</td>
+				<!-- <td>{{ device.plan }}</td> -->
+			</tr>
+		</tbody>
+	</table>
+
+	<br>
+	<br>
+
+	<div *ngFor="let userPlan of user.userPlans">
+		{{userPlan.plan.name}}
+		<ul *ngFor="let phone of userPlan.phones">
+			<li>{{phone.phoneName+" : "+phone.phoneNumber}}</li>
+
+		</ul>
+	</div>
+	
+	<br>
+	<br>
+
+	<table class="table white-table" *ngFor="let userPlan of user.userPlans">
+		
+			{{userPlan.plan.name}}
+				<tr *ngFor="let phone of userPlan.phones">
+					<td>{{ phone.phoneName }}</td>
+					<td>{{ phone.phoneNumber }}</td>
+					<td>{{ phone.phoneType }}</td>
+				</tr>
+			
+		
+	</table>
+
+
+
 </div>

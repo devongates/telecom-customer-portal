@@ -1,8 +1,10 @@
+import UserPlan from "./userPlan";
+
 class User {
     id: number;
     email: string;
     password: string;
-	userPlans: Array<any>
+	userPlans: Array<UserPlan>
 
     constructor(id = 0, email = '', password = '', userPlans=[]) {
         this.id = id;

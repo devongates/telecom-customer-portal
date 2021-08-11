@@ -1,14 +1,14 @@
 class Phone {
     id: number;
-    name: string;
+    phoneName: string;
     phoneNumber: string;
-    plan: string;
+    phoneType: string;
 
-    constructor(id = 0, name = '', phoneNumber = '', plan = '') {
+    constructor(id = 0, phoneName = '', phoneNumber = '', phoneType = '') {
         this.id = id;
-        this.name = name;
+        this.phoneName = phoneName;
         this.phoneNumber = phoneNumber;
-        this.plan = plan;
+        this.phoneType = phoneType;
     }
 }
 
