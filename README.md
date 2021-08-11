@@ -32,7 +32,7 @@ The application must be a single-page application. The login screen may be a sep
 
 
 ## Phone Plan Features 
-| Base Plan     | Mid-Plan      | Super Plan    |
+| Base Plan     | Super         | Unlimited     |
 | ------------- |:-------------:| -------------:|
 | 1 line        | up to 4 lines | up to 6 lines |
 | $50 flat rate | $35 flat rate | $60 flat rate |
