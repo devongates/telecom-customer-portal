@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "PLAN")
 public class Plan {
@@ -22,6 +24,10 @@ public class Plan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PLAN_ID")
 	private int id;
+	
+	@NotNull
+	@Column(name = "PLAN_NAME")
+	private String name;
 	
 	@NotNull
 	@Column(name = "MAX_NUM_LINES")
@@ -35,6 +41,7 @@ public class Plan {
 	@Column(name = "COST_PER_LINE")
 	private BigDecimal costPerLine;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="plan")
 	private Set<UserPlan> userPlans;
 	
@@ -92,8 +99,10 @@ public class Plan {
 	public void setUserPlans(Set<UserPlan> userPlans) {
 		this.userPlans = userPlans;
 	}
-	
-	
+
+
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
 	
 	
 }

@@ -1,22 +1,26 @@
 package com.example.demo.service;
 
+
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.demo.models.Phone;
-import com.example.demo.models.Plan;
 import com.example.demo.models.User;
 import com.example.demo.models.UserPlan;
+import com.example.demo.models.Phone;
+import com.example.demo.models.Plan;
+import com.example.demo.data.UserRepository;
 
 @Service
 public class TelecomService {
 	
-//	@Autowired
-//	UserRepository userRepo;
+	@Autowired
+	UserRepository userRepo;
 	
 //	   __  _______ __________ 
 //	  / / / / ___// ____/ __ \
@@ -26,7 +30,8 @@ public class TelecomService {
 //	                          
 
 	public User getUser(User user){
-		return new User();
+		user = userRepo.findByEmailAndPassword(user.getEmail(),user.getPassword());
+		return user;
 	}
 	
 	public User createNewUser(User user) {
