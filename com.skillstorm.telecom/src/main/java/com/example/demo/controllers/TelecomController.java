@@ -151,8 +151,9 @@ public class TelecomController {
 	}
 	
 	@GetMapping("/plans/{planId}")
-	public ResponseEntity<Plan> getPlan(@PathVariable("planId") int planId){
-		return new ResponseEntity<>(service.getPlan(planId), HttpStatus.OK);
+	public ResponseEntity<Plan> getPlan(@PathVariable("planId") String planId){
+		System.out.println(planId);
+		return new ResponseEntity<>(service.getPlan(Integer.parseInt(planId)), HttpStatus.OK);
 	}
 	
 	@PostMapping("/plans")
