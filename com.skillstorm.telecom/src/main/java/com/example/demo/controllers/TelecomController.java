@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -81,28 +82,25 @@ public class TelecomController {
 		return new ResponseEntity<>(userPlans, HttpStatus.OK);
 	}
 	
-	@GetMapping("/user/plan")
-	public ResponseEntity<UserPlan> getUserPlan(@RequestBody @Valid User user){
-		UserPlan userPlan = service.getUserPlan(user);
-		return new ResponseEntity<>(userPlan, HttpStatus.OK);
+	@GetMapping("/user/plans/{userplanId}")
+	public ResponseEntity<UserPlan> getUserPlan(@PathVariable("userplanId") int userplanId){
+		return new ResponseEntity<>(service.getUserPlan(userplanId), HttpStatus.OK);
 	}
 	
-	@PostMapping("/user/plan")
+	@PostMapping("/user/plans")
 	public ResponseEntity<UserPlan> createNewUserPlan(@RequestBody @Valid UserPlan userPlan){
-		userPlan = service.createNewUserPlan(userPlan);
-		return new ResponseEntity<>(userPlan, HttpStatus.CREATED);
+		return new ResponseEntity<>(service.createNewUserPlan(userPlan), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/user/plan")
-	public ResponseEntity<Void> updateUserPlan(@RequestBody @Valid UserPlan userPlan){
-		service.updateUserPlan(userPlan);
+	@PutMapping("/user/plans/{userplanId}")
+	public ResponseEntity<Void> updateUserPlan(@PathVariable("userplanId") int userplanId, @RequestBody @Valid UserPlan userPlan){
+		service.updateUserPlan(userplanId, userPlan);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@DeleteMapping("/user/plan")
-	public ResponseEntity<UserPlan> deleteUserPlan(@RequestBody @Valid UserPlan userPlan){
-		userPlan = service.deleteUserPlan(userPlan);
-		return new ResponseEntity<>(userPlan, HttpStatus.OK);
+	@DeleteMapping("/user/plans/{userplanId}")
+	public ResponseEntity<UserPlan> deleteUserPlan(@PathVariable("userplanId") int userplanId){
+		return new ResponseEntity<>(service.deleteUserPlan(userplanId), HttpStatus.OK);
 	}
 	
 
@@ -113,34 +111,30 @@ public class TelecomController {
 // /_/   /_/ /_/\____/_/ |_/_____/   
 //                                  
 
-	@GetMapping("/user/plan/phones")
-	public ResponseEntity<Set<Phone>> getPhones(@RequestBody @Valid User user){
-		Set<Phone> phones = service.getPhones(user);
-		return new ResponseEntity<>(phones, HttpStatus.OK);
+	@GetMapping("/user/plans/{userplanId}/phones")
+	public ResponseEntity<Set<Phone>> getPhones(@PathVariable("userplanId") int userplanId){
+		return new ResponseEntity<>(service.getPhones(userplanId), HttpStatus.OK);
 	}
 
-	@GetMapping("/user/plan/phone")
-	public ResponseEntity<Phone> getPhone(@RequestBody @Valid Phone phone){
-		phone = service.getPhone(phone);
-		return new ResponseEntity<>(phone, HttpStatus.OK);
+	@GetMapping("/user/plans/{userplanId}/phones/{phoneId}")
+	public ResponseEntity<Phone> getPhone(@PathVariable("userplanId") int userplanId, @PathVariable("phoneId") int phoneId){
+		return new ResponseEntity<>(service.getPhone(userplanId, phoneId), HttpStatus.OK);
 	}
 	
-	@PostMapping("/user/plan/phone")
-	public ResponseEntity<Phone> createNewPhone(@RequestBody @Valid Phone phone){
-		phone = service.createNewPhone(phone);
-		return new ResponseEntity<>(phone, HttpStatus.CREATED);
+	@PostMapping("/user/plans/{userplanId}/phones")
+	public ResponseEntity<Phone> createNewPhone(@PathVariable("userplanId") int userplanId, @RequestBody @Valid Phone phone){
+		return new ResponseEntity<>(service.createNewPhone(userplanId, phone), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/user/plan/phone")
-	public ResponseEntity<Void> updatePhone(@RequestBody @Valid Phone phone){
-		service.updatePhone(phone);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	@PutMapping("/user/plans/{userplanId}/phones/{phoneId}")
+	public ResponseEntity<Void> updatePhone(@PathVariable("userplanId") int userplanId, @PathVariable("phoneId") int phoneId, @RequestBody @Valid Phone phone){
+		service.updatePhone(userplanId, phoneId, phone);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	
-	@DeleteMapping("/user/plan/phone")
-	public ResponseEntity<Phone> deletePhone(@RequestBody @Valid Phone phone){
-		phone = service.deletePhone(phone);
-		return new ResponseEntity<>(phone, HttpStatus.OK);
+	@DeleteMapping("/user/plans/{userplanId}/phones/{phoneId}")
+	public ResponseEntity<Phone> deletePhone(@PathVariable("planId") int planId, @PathVariable("phoneId") int phoneId){
+		return new ResponseEntity<>(service.deletePhone(planId, phoneId), HttpStatus.OK);
 	}
 
 //     ____  __    ___    _   __
@@ -152,32 +146,28 @@ public class TelecomController {
 
 	@GetMapping("/plans")
 	public ResponseEntity<Set<Plan>> getPlans(){
-		Set<Plan> plans = service.getPlans();
-		return new ResponseEntity<>(plans, HttpStatus.OK);
+		return new ResponseEntity<>(service.getPlans(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/plan")
-	public ResponseEntity<Plan> getPlan(@RequestBody @Valid Plan plan){
-		plan = service.getPlan();
-		return new ResponseEntity<>(plan, HttpStatus.OK);
+	@GetMapping("/plans/{planId}")
+	public ResponseEntity<Plan> getPlan(@PathVariable("planId") int planId){
+		return new ResponseEntity<>(service.getPlan(planId), HttpStatus.OK);
 	}
 	
-	@PostMapping("/plans")
+	@PostMapping("/plans/")
 	public ResponseEntity<Plan> createNewPlan(@RequestBody @Valid Plan plan){
-		plan = service.createNewPlan(plan);
-		return new ResponseEntity<>(plan, HttpStatus.CREATED);
+		return new ResponseEntity<>(service.createNewPlan(plan), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/plan")
-	public ResponseEntity<Void> updatePlan(@RequestBody @Valid Plan plan){
-		service.updatePlan(plan);
+	@PutMapping("/plans/{planId}")
+	public ResponseEntity<Void> updatePlan(@PathVariable("planId") int planId, @RequestBody @Valid Plan plan){
+		service.updatePlan(planId, plan);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@DeleteMapping("/plan")
-	public ResponseEntity<Plan> deletePlan(@RequestBody @Valid Plan plan){
-		plan = service.deletePlan(plan);
-		return new ResponseEntity<>(plan, HttpStatus.OK);
+	@DeleteMapping("/plans/{planId}")
+	public ResponseEntity<Plan> deletePlan(@PathVariable("planId") int planId){
+		return new ResponseEntity<>(service.deletePlan(planId), HttpStatus.OK);
 	}
 
 }
