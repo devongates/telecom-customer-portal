@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,10 +15,21 @@ import com.example.demo.models.UserPlan;
 import com.example.demo.models.Phone;
 import com.example.demo.models.Plan;
 import com.example.demo.data.PhoneRepository;
+import com.example.demo.data.PlanRepository;
 import com.example.demo.data.UserRepository;
+import com.example.demo.data.UserplanRepository;
 
 @Service
 public class TelecomService {
+	
+	@Autowired
+	UserRepository userRepo;
+	@Autowired
+	PhoneRepository phoneRepo;
+	@Autowired
+	UserplanRepository userplanRepo;
+	@Autowired
+	PlanRepository planRepo;
 	
 //	   __  _______ __________ 
 //	  / / / / ___// ____/ __ \
@@ -27,12 +37,7 @@ public class TelecomService {
 //	/ /_/ /___/ / /___/ _, _/ 
 //	\____//____/_____/_/ |_|  
 //	                          
-
-	@Autowired
-	UserRepository userRepo;
-	@Autowired
-	PhoneRepository phoneRepo;
-
+	
 	public User getUser(String email, String password){
 		return userRepo.findByEmailAndPassword(email,password);
 	}
@@ -67,24 +72,36 @@ public class TelecomService {
 //                                  
 
 
-	public Set<Phone> getPhones(int planId) {
-		return new TreeSet<Phone>();
+	public Set<Phone> getPhones(int userplanId) {
+		UserPlan userplan = userplanRepo.getById(userplanId);
+		return userplan.getPhones();
 	}
 
-	public Phone getPhone(int planId, int phoneId) {
-		return new Phone();
+	public Phone getPhone(int phoneId) {
+		return phoneRepo.getById(phoneId);
 	}
 
-	public Phone createNewPhone(int planId, Phone phone) {
-		return new Phone();
+	public Phone createNewPhone(Phone phone) {
+		return phoneRepo.save(phone);
 	}
 
-	public void updatePhone(int planId, int phoneId, @Valid Phone phone) {
-		// TODO
+	public void updatePhone(int phoneId, @Valid Phone phone) {
+		Optional<Phone> phoneData = phoneRepo.findById(phoneId);
+		
+		if (phoneData.isPresent()) {
+			Phone _phoneData = phoneData.get();
+			
+			_phoneData.setPhoneNumber(phone.getPhoneNumber());
+			_phoneData.setPhoneName(phone.getPhoneName());
+			_phoneData.setPhoneType(phone.getPhoneType());
+			_phoneData.setUserPlan(phone.getUserPlan());
+			
+			phoneRepo.save(_phoneData);
+		}
 	}
 
-	public Phone deletePhone(int planId, int phoneId) {
-		return new Phone();
+	public void deletePhone(int phoneId) {
+		phoneRepo.deleteById(phoneId);
 	}
 
 //	   __  _______ __________  ____  __    ___    _   __
@@ -94,24 +111,35 @@ public class TelecomService {
 //	\____//____/_____/_/ |_/_/   /_____/_/  |_/_/ |_/   
 //	     
 	
-	public Set<UserPlan> getUserPlans(User user) {
-		return new TreeSet<UserPlan>();
+	public Set<UserPlan> getUserPlansByUserId(int userId) {
+		User user = userRepo.getById(userId);
+		return user.getUserPlans();
 	}
 
 	public UserPlan getUserPlan(int userplanId) {
-		return new UserPlan();
+		return userplanRepo.getById(userplanId);
 	}
 	
 	public UserPlan createNewUserPlan(UserPlan userPlan) {
-		return new UserPlan();
+		return userplanRepo.save(userPlan);
 	}
 
 	public void updateUserPlan(int userplanId, UserPlan userplan) {
-		// TODO
+		Optional<UserPlan> userplanData = userplanRepo.findById(userplanId);
+		
+		if (userplanData.isPresent()) {
+			UserPlan _userplanData = userplanData.get();
+			
+			_userplanData.setPhones(userplan.getPhones());
+			_userplanData.setPlan(userplan.getPlan());
+			_userplanData.setUser(userplan.getUser());
+			
+			userplanRepo.save(_userplanData);
+		}
 	}
 
-	public UserPlan deleteUserPlan(int userplanId) {
-		return new UserPlan();
+	public void deleteUserPlan(int userplanId) {
+		userplanRepo.deleteById(userplanId);
 	}
 	
 
@@ -122,24 +150,36 @@ public class TelecomService {
 // /_/   /_____/_/  |_/_/ |_/   
 //                             
 
-	public Set<Plan> getPlans() {
-		return new TreeSet<Plan>();
+	public List<Plan> getPlans() {
+		return planRepo.findAll();
 	}
 
 	public Plan getPlan(int planId) {
-		return new Plan();
+		return planRepo.getById(planId);
 	}
 
 	public Plan createNewPlan(Plan plan) {
-		return new Plan();
+		return planRepo.save(plan);
 	}
 
 	public void updatePlan(int planId, Plan plan) {
-		// TODO 
+		Optional<Plan> planData = planRepo.findById(planId);
+		
+		if (planData.isPresent()) {
+			Plan _planData = planData.get();
+			
+			_planData.setBaseCost(plan.getBaseCost());
+			_planData.setCostPerLine(plan.getCostPerLine());
+			_planData.setMaxNumLines(plan.getMaxNumLines());
+			_planData.setName(plan.getName());
+			_planData.setUserPlans(plan.getUserPlans());
+			
+			planRepo.save(_planData);
+		}	
 	}
 
-	public Plan deletePlan(int planId) {
-		return new Plan();
+	public void deletePlan(int planId) {
+		planRepo.deleteById(planId);
 	}
 
 
