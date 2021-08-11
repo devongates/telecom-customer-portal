@@ -29,8 +29,8 @@ public class TelecomService {
 //	\____//____/_____/_/ |_|  
 //	                          
 
-	public User getUser(User user){
-		user = userRepo.findByEmailAndPassword(user.getEmail(),user.getPassword());
+	public User getUser(String email, String password){
+		User user = userRepo.findByEmailAndPassword(email,password);
 		return user;
 	}
 	

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.Phone;
@@ -41,8 +42,9 @@ public class TelecomController {
 //	                          
 
 	@GetMapping("/user")
-	public ResponseEntity<User> getUser(@RequestBody @Valid User user){
-		user = service.getUser(user);
+	public ResponseEntity<User> getUser(@RequestParam (value="email", required=true) String email,
+			@RequestParam (value="password", required=true) String password){
+		User user = service.getUser(email,password);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 	
