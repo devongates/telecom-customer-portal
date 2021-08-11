@@ -155,7 +155,7 @@ public class TelecomController {
 		return new ResponseEntity<>(service.getPlan(planId), HttpStatus.OK);
 	}
 	
-	@PostMapping("/plans/")
+	@PostMapping("/plans")
 	public ResponseEntity<Plan> createNewPlan(@RequestBody @Valid Plan plan){
 		return new ResponseEntity<>(service.createNewPlan(plan), HttpStatus.CREATED);
 	}
