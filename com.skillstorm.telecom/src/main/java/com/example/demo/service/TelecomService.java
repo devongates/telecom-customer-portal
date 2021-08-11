@@ -78,7 +78,13 @@ public class TelecomService {
 	}
 
 	public Phone getPhone(int phoneId) {
-		return phoneRepo.getById(phoneId);
+		Optional<Phone> phoneData = phoneRepo.findById(phoneId);
+		
+		if (phoneData.isPresent()) {
+			return phoneData.get();
+		} else {
+			return new Phone();
+		}
 	}
 
 	public Phone createNewPhone(Phone phone) {
@@ -117,7 +123,13 @@ public class TelecomService {
 	}
 
 	public UserPlan getUserPlan(int userplanId) {
-		return userplanRepo.getById(userplanId);
+		Optional<UserPlan> userplanData = userplanRepo.findById(userplanId);
+		
+		if (userplanData.isPresent()) {
+			return userplanData.get();
+		} else {
+			return new UserPlan();
+		}
 	}
 	
 	public UserPlan createNewUserPlan(UserPlan userPlan) {
@@ -155,7 +167,13 @@ public class TelecomService {
 	}
 
 	public Plan getPlan(int planId) {
-		return planRepo.getById(planId);
+		Optional<Plan> planData = planRepo.findById(planId);
+		
+		if (planData.isPresent()) {
+			return planData.get();
+		} else {
+			return new Plan();
+		}
 	}
 
 	public Plan createNewPlan(Plan plan) {
