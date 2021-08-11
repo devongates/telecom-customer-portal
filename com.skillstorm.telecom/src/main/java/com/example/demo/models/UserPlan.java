@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "USERPLAN")
 public class UserPlan {
@@ -24,6 +26,7 @@ public class UserPlan {
 	@Column(name = "USERPLAN_ID")
 	private int id;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "USERPLAN_USER_ID", referencedColumnName = "USER_ID")
 	private User user;

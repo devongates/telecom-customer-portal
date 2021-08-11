@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "PHONE")
 public class Phone {
@@ -22,7 +24,7 @@ public class Phone {
 	@Column(name = "PHONE_ID")
 	private int id;
 	
-	@Column(name = "PHONE_NUMBER")
+	@Column(name = "PHONE_NUMBER", unique=true)
 	@NotNull
 	@Pattern(regexp = "^[0-9]{10}$")
 	private String phoneNumber;
@@ -35,6 +37,7 @@ public class Phone {
 	@NotNull
 	private String phoneType;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "PHONE_USERPLAN_ID")
 	private UserPlan userPlan;

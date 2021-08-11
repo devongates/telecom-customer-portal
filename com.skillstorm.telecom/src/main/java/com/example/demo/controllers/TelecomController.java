@@ -31,7 +31,7 @@ public class TelecomController {
 	
 	@GetMapping("/user")
 	public ResponseEntity<User> getUser(@RequestBody @Valid User user){
-		//user = service.getUser(user);
+		user = service.getUser(user);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 	

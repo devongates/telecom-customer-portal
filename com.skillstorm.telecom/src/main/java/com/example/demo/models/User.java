@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "USER")
 public class User {
@@ -25,13 +27,15 @@ public class User {
 	
 	@Email
 	@NotBlank
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", unique=true)
 	private String email;
+	
 	
 	@NotBlank
 	@Column(name = "PASSWORD")
 	// TODO: handle authentication and encryption
 	private String password;
+	
 	
 	@OneToMany(mappedBy="user")
 	private Set<UserPlan> userPlans;
