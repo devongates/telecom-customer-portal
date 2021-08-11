@@ -4,6 +4,7 @@ package com.example.demo.service;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -14,13 +15,11 @@ import com.example.demo.models.User;
 import com.example.demo.models.UserPlan;
 import com.example.demo.models.Phone;
 import com.example.demo.models.Plan;
+import com.example.demo.data.PhoneRepository;
 import com.example.demo.data.UserRepository;
 
 @Service
 public class TelecomService {
-	
-	@Autowired
-	UserRepository userRepo;
 	
 //	   __  _______ __________ 
 //	  / / / / ___// ____/ __ \
@@ -28,6 +27,11 @@ public class TelecomService {
 //	/ /_/ /___/ / /___/ _, _/ 
 //	\____//____/_____/_/ |_|  
 //	                          
+
+	@Autowired
+	UserRepository userRepo;
+	@Autowired
+	PhoneRepository phoneRepo;
 
 	public User getUser(String email, String password){
 		return userRepo.findByEmailAndPassword(email,password);
@@ -37,12 +41,22 @@ public class TelecomService {
 		return userRepo.save(user);
 	}
 	
-	public void updateUser(User user) {
-		//TODO
+	public void updateUser(int userId, User user) {
+		Optional<User> userData = userRepo.findById(userId);
+		
+		if (userData.isPresent()) {
+			User _userData = userData.get();
+			
+			_userData.setEmail(user.getEmail());
+			_userData.setPassword(user.getPassword());
+			_userData.setUserPlans(user.getUserPlans());
+			
+			userRepo.save(_userData);
+		}
 	}
 
-	public User deleteUser(User user) {
-		return new User();
+	public void deleteUser(int userId) {
+		userRepo.deleteById(userId);
 	}
 	
 //     ____  __  ______  _   ________
@@ -52,7 +66,7 @@ public class TelecomService {
 // /_/   /_/ /_/\____/_/ |_/_____/   
 //                                  
 
-	
+
 	public Set<Phone> getPhones(int planId) {
 		return new TreeSet<Phone>();
 	}

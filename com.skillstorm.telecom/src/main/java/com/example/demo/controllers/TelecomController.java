@@ -45,26 +45,24 @@ public class TelecomController {
 	@GetMapping("/user")
 	public ResponseEntity<User> getUser(@RequestParam (value="email", required=true) String email,
 			@RequestParam (value="password", required=true) String password){
-		User user = service.getUser(email,password);
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		return new ResponseEntity<>(service.getUser(email, password), HttpStatus.OK);
 	}
 	
 	@PostMapping("/user")
 	public ResponseEntity<User> createNewUser(@RequestBody @Valid User user){
-		user = service.createNewUser(user);
-		return new ResponseEntity<>(user, HttpStatus.CREATED);
+		return new ResponseEntity<>(service.createNewUser(user), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/user")
-	public ResponseEntity<Void> updateUser(@RequestBody @Valid User user){
-		service.updateUser(user);
+	@PutMapping("/user/{userId}")
+	public ResponseEntity<Void> updateUser(@PathVariable("userId") int userId, @RequestBody @Valid User user){
+		service.updateUser(userId, user);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@DeleteMapping("/user")
-	public ResponseEntity<User> deleteUser(@RequestBody @Valid User user){
-		user = service.deleteUser(user);
-		return new ResponseEntity<>(user, HttpStatus.OK);
+	@DeleteMapping("/user/{userId}")
+	public ResponseEntity<Void> deleteUser(@PathVariable("userId") int userId){
+		service.deleteUser(userId);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 
