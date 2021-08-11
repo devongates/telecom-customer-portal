@@ -1,4 +1,4 @@
-class Device {
+class Phone {
     id: number;
     name: string;
     phoneNumber: string;
@@ -12,4 +12,4 @@ class Device {
     }
 }
 
-export default Device;
+export default Phone;

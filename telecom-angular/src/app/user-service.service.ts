@@ -14,10 +14,7 @@ export class UserServiceService {
 	constructor(private http: HttpClient) { }
 
 
-	getUserData(email: string, password: string):void{//:Observable<any>{
-		this.http.get(`${this.url}?email=${email}&password=${password}`).subscribe(result=>{
-			console.log(result);
-			
-		});
+	getUserData(email: string, password: string):Observable<any>{
+		return this.http.get(`${this.url}?email=${email}&password=${password}`);
 	}
 }

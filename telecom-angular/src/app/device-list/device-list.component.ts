@@ -9,7 +9,7 @@ import { UserServiceService } from '../user-service.service';
 })
 export class DeviceListComponent implements OnInit {
 
-	//service: UserServiceService
+	service: UserServiceService
 
 	deviceList: Array<Device> = [
 		new Device(1, 'Devon\'s phone', '1234567890', 'super'),
@@ -17,9 +17,15 @@ export class DeviceListComponent implements OnInit {
 		new Device(3, 'Todd\'s other phone', '2345678901', 'unlimited')
 	];
 
-	constructor() { }
+	constructor(service: UserServiceService) {
+		this.service=service;
+	}
 
 	ngOnInit(): void {
+		this.service.getUserData("todd@emert.com","1234").subscribe(result=>{
+			console.log(result);
+			
+		});
 	}
 
 }
