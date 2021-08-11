@@ -30,12 +30,11 @@ public class TelecomService {
 //	                          
 
 	public User getUser(String email, String password){
-		User user = userRepo.findByEmailAndPassword(email,password);
-		return user;
+		return userRepo.findByEmailAndPassword(email,password);
 	}
 	
 	public User createNewUser(User user) {
-		return new User();
+		return userRepo.save(user);
 	}
 	
 	public void updateUser(User user) {
@@ -54,23 +53,23 @@ public class TelecomService {
 //                                  
 
 	
-	public Set<Phone> getPhones(@Valid User user) {
+	public Set<Phone> getPhones(int planId) {
 		return new TreeSet<Phone>();
 	}
 
-	public Phone getPhone(Phone phone) {
+	public Phone getPhone(int planId, int phoneId) {
 		return new Phone();
 	}
 
-	public Phone createNewPhone(Phone phone) {
+	public Phone createNewPhone(int planId, Phone phone) {
 		return new Phone();
 	}
 
-	public void updatePhone(@Valid Phone phone) {
+	public void updatePhone(int planId, int phoneId, @Valid Phone phone) {
 		// TODO
 	}
 
-	public Phone deletePhone(Phone phone) {
+	public Phone deletePhone(int planId, int phoneId) {
 		return new Phone();
 	}
 
@@ -85,7 +84,7 @@ public class TelecomService {
 		return new TreeSet<UserPlan>();
 	}
 
-	public UserPlan getUserPlan(User user) {
+	public UserPlan getUserPlan(int userplanId) {
 		return new UserPlan();
 	}
 	
@@ -93,11 +92,11 @@ public class TelecomService {
 		return new UserPlan();
 	}
 
-	public void updateUserPlan(@Valid UserPlan userPlan) {
+	public void updateUserPlan(int userplanId, UserPlan userplan) {
 		// TODO
 	}
 
-	public UserPlan deleteUserPlan(UserPlan userPlan) {
+	public UserPlan deleteUserPlan(int userplanId) {
 		return new UserPlan();
 	}
 	
@@ -113,7 +112,7 @@ public class TelecomService {
 		return new TreeSet<Plan>();
 	}
 
-	public @Valid Plan getPlan() {
+	public Plan getPlan(int planId) {
 		return new Plan();
 	}
 
@@ -121,11 +120,11 @@ public class TelecomService {
 		return new Plan();
 	}
 
-	public void updatePlan(Plan plan) {
+	public void updatePlan(int planId, Plan plan) {
 		// TODO 
 	}
 
-	public Plan deletePlan(Plan plan) {
+	public Plan deletePlan(int planId) {
 		return new Plan();
 	}
 
