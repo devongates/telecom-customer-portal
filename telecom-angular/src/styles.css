@@ -3,7 +3,7 @@
 
 :root {
   --c-white: #fbf7f3;
-  --c-blue: #20283d;
+  --c-blue:  #20283d;
   --c-green: #426e5d;
   --c-peach: #e5b083;
 }
@@ -25,14 +25,11 @@ nav {
   color: var(--c-green);
 }
 
-.card {
-  border-style: none;
-  padding: 20px;
-  height: 100%;
-}
-.row {
-  /* margin-bottom: 30px; */
-}
+
+
+/************************************\
+|              Buttons               |
+\************************************/
 
 .blue-btn {
   background-color: var(--c-blue);
@@ -41,6 +38,16 @@ nav {
 }
 .blue-btn:hover {
   color: var(--c-peach);
+}
+
+
+/************************************\
+|               Cards                |
+\************************************/
+.card {
+	border-style: none;
+	padding: 20px;
+	height: 100%;
 }
 
 .blue-card {
@@ -52,34 +59,29 @@ nav {
   color: var(--c-white);
 }
 .white-card {
-  border-style: none;
   background-color: var(--c-white);
   color: var(--c-blue);
 }
 .peach-card {
-  border-style: none;
   background-color: var(--c-peach);
   color: var(--c-blue);
 }
+
+
+/************************************\
+|               Tables               |
+\************************************/
 
 .white-table {
   background-color: var(--c-white);
   color: var(--c-blue);
 }
-
 .blue-table {
   background-color: var(--c-blue);
   color: var(--c-white);
 }
-
 .green-table {
   background-color: var(--c-green);
   color: var(--c-white);
 }
 
-/* 
-#20283d blue
-#426e5d green
-#e5b083	peach
-#fbf7f3 white
-*/
