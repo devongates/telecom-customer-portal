@@ -41,6 +41,17 @@ nav {
 }
 
 
+
+.edit-btn{
+	margin-top: 10px;
+	background: transparent;
+    border: none !important;
+}
+.white-text{
+	color: var(--c-white);
+}
+
+
 /************************************\
 |               Cards                |
 \************************************/
@@ -65,6 +76,11 @@ nav {
 .peach-card {
   background-color: var(--c-peach);
   color: var(--c-blue);
+}
+
+
+.phone-card{
+	padding-top: 0;
 }
 
 

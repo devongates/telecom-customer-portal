@@ -11,7 +11,7 @@ import { UserServiceService } from '../user-service.service';
 export class DeviceListComponent implements OnInit {
 
 	service: UserServiceService;
-	user: User =new User();
+	user: User = new User();
 
 	deviceList: Array<Phone> = [
 		new Phone(1, 'Devon\'s phone', '1234567890', 'super'),
@@ -20,17 +20,25 @@ export class DeviceListComponent implements OnInit {
 	];
 
 	constructor(service: UserServiceService) {
-		this.service=service;
+		this.service = service;
 
 	}
 
 	ngOnInit(): void {
-		this.service.getUserData("todd@emert.com","1234").subscribe(result=>{
-			this.user=result;
+		this.service.getUserData("todd@emert.com", "1234").subscribe(result => {
+			this.user = result;
 			console.log(this.user);
 
-			
+
 		});
 	}
+
+	displayLines(max:number):string{
+		if(max===1){
+			return "Only one line available"
+		}
+		return `Up to ${max} lines available`
+	}
+
 
 }
