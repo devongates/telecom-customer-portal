@@ -8,6 +8,9 @@ import { DeviceListComponent } from './device-list/device-list.component';
 import { PlanCardComponent } from './plan-card/plan-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DeviceComponent } from './device/device.component';
+import { LoginComponent } from './login/login.component';
+import { PlansComponent } from './plans/plans.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +18,15 @@ import { DeviceComponent } from './device/device.component';
     NavBarComponent,
     DeviceListComponent,
     PlanCardComponent,
-    DeviceComponent
+    DeviceComponent,
+    LoginComponent,
+    PlansComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-	HttpClientModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
