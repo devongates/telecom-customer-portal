@@ -42,6 +42,11 @@ public class TelecomController {
 //	/ /_/ /___/ / /___/ _, _/ 
 //	\____//____/_____/_/ |_|  
 //	                          
+	
+	@GetMapping("/users")
+	public ResponseEntity<List<User>> getUsers() {
+		return new ResponseEntity<>(service.getUsers(), HttpStatus.OK);
+	}
 
 	@GetMapping("/user")
 	public ResponseEntity<User> getUser(@RequestParam (value="email", required=true) String email,
@@ -75,12 +80,6 @@ public class TelecomController {
 //	                                                    
 
 	
-	@GetMapping("/userplans/{userId}")
-	public ResponseEntity<Set<UserPlan>> getUserPlans(@PathVariable("userId") int userId){
-		Set<UserPlan> userPlans = service.getUserPlansByUserId(userId);
-		return new ResponseEntity<>(userPlans, HttpStatus.OK);
-	}
-	
 	@GetMapping("/userplans/{userplanId}")
 	public ResponseEntity<UserPlan> getUserPlan(@PathVariable("userplanId") int userplanId){
 		return new ResponseEntity<>(service.getUserPlan(userplanId), HttpStatus.OK);
@@ -112,8 +111,8 @@ public class TelecomController {
 //                                  
 
 	@GetMapping("/phones")
-	public ResponseEntity<Set<Phone>> getPhones(@PathVariable("userplanId") int userplanId){
-		return new ResponseEntity<>(service.getPhones(userplanId), HttpStatus.OK);
+	public ResponseEntity<List<Phone>> getPhones(){
+		return new ResponseEntity<>(service.getPhones(), HttpStatus.OK);
 	}
 
 	@GetMapping("/phones/{phoneId}")
