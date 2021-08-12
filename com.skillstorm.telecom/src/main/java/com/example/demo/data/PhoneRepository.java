@@ -7,8 +7,4 @@ import com.example.demo.models.Phone;
 
 @Repository
 public interface PhoneRepository extends JpaRepository<Phone,Integer> {
-	
-	//public List<Phone> findByPhoneUserPlanId(int id);
-	
-	
 }

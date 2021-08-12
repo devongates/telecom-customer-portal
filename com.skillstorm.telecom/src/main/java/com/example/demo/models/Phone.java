@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "PHONE")
@@ -37,11 +37,13 @@ public class Phone {
 	@NotNull
 	private String phoneType;
 
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "PHONE_USERPLAN_ID")
+	@JoinColumn(name = "PHONE_USERPLAN_ID",insertable = false, updatable = false)
 	private UserPlan userPlan;
 	
+	@Column(name = "PHONE_USERPLAN_ID")
+	private int userPlanId;
 	
 	
 	
@@ -84,6 +86,11 @@ public class Phone {
 
 	public String getPhoneType() { return phoneType; }
 	public void setPhoneType(String phoneType) { this.phoneType = phoneType; }
+
+
+	public int getUserPlanId() { return userPlanId; }
+	public void setUserPlanId(int userPlanId) { this.userPlanId = userPlanId; }
+//	
 	
 	
 }

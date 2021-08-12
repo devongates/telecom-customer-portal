@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "USERPLAN")
@@ -27,16 +28,27 @@ public class UserPlan {
 	@Column(name = "USERPLAN_ID")
 	private int id;
 	
+	
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "USERPLAN_USER_ID")
+	@JoinColumn(name = "USERPLAN_USER_ID",insertable = false, updatable = false)
 	private User user;
 	
+	@Column(name = "USERPLAN_USER_ID")
+	private int userId;
+	
+	@Column(name = "USERPLAN_PLAN_ID")
+	private int planId;
+
 	@ManyToOne
-	@JoinColumn(name = "USERPLAN_PLAN_ID", referencedColumnName = "PLAN_ID")
+	@JoinColumn(name = "USERPLAN_PLAN_ID", referencedColumnName = "PLAN_ID",insertable = false, updatable = false)
 	private Plan plan;
 	
-	@OneToMany(mappedBy="userPlan", cascade = CascadeType.ALL)
+	
+	
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy="userPlanId", cascade = CascadeType.ALL)
 	private Set<Phone> phones;
 	
 	
@@ -82,6 +94,15 @@ public class UserPlan {
 	public void setPhones(Set<Phone> phones) { 
 		this.phones = phones; 
 	}
+
+
+	public int getUserId() { return userId; }
+	public void setUserId(int userId) { this.userId = userId; }
+
+	public int getPlanId() { return planId; }
+	public void setPlanId(int planId) { this.planId = planId; }
+	
+	
 	
 	
 }

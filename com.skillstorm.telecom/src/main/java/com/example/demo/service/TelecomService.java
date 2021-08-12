@@ -103,7 +103,7 @@ public class TelecomService {
 			_phoneData.setPhoneNumber(phone.getPhoneNumber());
 			_phoneData.setPhoneName(phone.getPhoneName());
 			_phoneData.setPhoneType(phone.getPhoneType());
-			_phoneData.setUserPlan(phone.getUserPlan());
+			_phoneData.setUserPlanId(phone.getUserPlanId());
 			
 			phoneRepo.save(_phoneData);
 		}
