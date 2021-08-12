@@ -91,6 +91,8 @@ public class TelecomService {
 	}
 
 	public Phone createNewPhone(Phone phone) {
+		//move existing phone number
+		phoneRepo.findByPhoneNumber(phone.getPhoneNumber()).ifPresent(p->phone.setId(p.getId()));
 		return phoneRepo.save(phone);
 	}
 
@@ -112,6 +114,14 @@ public class TelecomService {
 	public void deletePhone(int phoneId) {
 		phoneRepo.deleteById(phoneId);
 	}
+	
+	
+	public boolean isNumberInUse(String number) {
+		return 
+				phoneRepo.findByPhoneNumber(number).isPresent();
+	}
+	
+	
 
 //	   __  _______ __________  ____  __    ___    _   __
 //	  / / / / ___// ____/ __ \/ __ \/ /   /   |  / | / /

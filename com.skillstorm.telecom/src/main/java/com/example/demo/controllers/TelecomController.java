@@ -135,6 +135,13 @@ public class TelecomController {
 		service.deletePhone(phoneId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+	
+	@GetMapping("/phone")
+	public ResponseEntity<Boolean> isNumberInUse(@RequestParam (value="phonenumber") String number){
+		return new ResponseEntity<>(service.isNumberInUse(number), HttpStatus.OK);
+	}
+	
+	
 
 //     ____  __    ___    _   __
 //    / __ \/ /   /   |  / | / /
