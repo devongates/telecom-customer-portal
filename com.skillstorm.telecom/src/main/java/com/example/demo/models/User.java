@@ -1,7 +1,9 @@
 package com.example.demo.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "USER")
@@ -22,6 +25,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	@Column(name = "USER_ID")
 	private int id;
 	
@@ -36,9 +40,9 @@ public class User {
 	// TODO: handle authentication and encryption
 	private String password;
 	
-	
-	@OneToMany(mappedBy="user")
-	private Set<UserPlan> userPlans;
+	@JsonManagedReference
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	private Set<UserPlan> userPlans = new HashSet<>();
 	
 	
 	

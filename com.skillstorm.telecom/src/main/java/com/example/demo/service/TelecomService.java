@@ -38,6 +38,10 @@ public class TelecomService {
 //	\____//____/_____/_/ |_|  
 //	                          
 	
+	public List<User> getUsers() {
+		return userRepo.findAll();
+	}
+	
 	public User getUser(String email, String password){
 		return userRepo.findByEmailAndPassword(email,password);
 	}
@@ -72,9 +76,8 @@ public class TelecomService {
 //                                  
 
 
-	public Set<Phone> getPhones(int userplanId) {
-		UserPlan userplan = userplanRepo.getById(userplanId);
-		return userplan.getPhones();
+	public List<Phone> getPhones() {
+		return phoneRepo.findAll();
 	}
 
 	public Phone getPhone(int phoneId) {
@@ -144,7 +147,6 @@ public class TelecomService {
 			
 			_userplanData.setPhones(userplan.getPhones());
 			_userplanData.setPlan(userplan.getPlan());
-			_userplanData.setUser(userplan.getUser());
 			
 			userplanRepo.save(_userplanData);
 		}
