@@ -3,7 +3,7 @@
 
 :root {
   --c-white: #fbf7f3;
-  --c-blue:  #20283d;
+  --c-blue: #20283d;
   --c-green: #426e5d;
   --c-peach: #e5b083;
 }
@@ -25,8 +25,6 @@ nav {
   color: var(--c-green);
 }
 
-
-
 /************************************\
 |              Buttons               |
 \************************************/
@@ -40,25 +38,28 @@ nav {
   color: var(--c-peach);
 }
 
-
-
-.edit-btn{
-	margin-top: 10px;
-	background: transparent;
-    border: none !important;
+.green-btn {
+  background-color: var(--c-green);
+  border: none;
+  color: var(--c-white);
 }
-.white-text{
-	color: var(--c-white);
+.green-btn:hover {
+  color: var(--c-peach);
 }
 
+.edit-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: none !important;
+}
 
 /************************************\
 |               Cards                |
 \************************************/
 .card {
-	border-style: none;
-	padding: 20px;
-	height: 100%;
+  border-style: none;
+  padding: 20px;
+  height: 100%;
 }
 
 .blue-card {
@@ -78,11 +79,9 @@ nav {
   color: var(--c-blue);
 }
 
-
-.phone-card{
-	padding-top: 0;
+.phone-card {
+  padding-top: 0;
 }
-
 
 /************************************\
 |               Tables               |
@@ -101,3 +100,16 @@ nav {
   color: var(--c-white);
 }
 
+/************************************\
+|               Text                 |
+\************************************/
+
+.white-text {
+  color: var(--c-white);
+}
+.blue-text {
+  color: var(--c-blue);
+}
+.green-text {
+  color: var(--c-green);
+}
