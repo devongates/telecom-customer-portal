@@ -1,7 +1,12 @@
 <form [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
-    <label for="name" class="form-label">Device Name</label>
-    <input type="text" class="form-control" id="name" formControlName="name" />
+    <label for="phoneName" class="form-label">Device Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      formControlName="phoneName"
+    />
   </div>
   <div class="mb-3">
     <label for="phone-number" class="form-label">Phone Number</label>
@@ -21,7 +26,14 @@
       formControlName="phoneType"
     />
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!phoneForm.valid">
-    Submit
-  </button>
+  <div class="mb-3">
+    <label for="user-plan-id" class="form-label">User Plan Id</label>
+    <input
+      type="number"
+      class="form-control"
+      id="user-plan-id"
+      formControlName="userPlanId"
+    />
+  </div>
+  <button class="btn blue-btn" type="submit">Submit</button>
 </form>
