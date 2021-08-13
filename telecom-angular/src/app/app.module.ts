@@ -12,6 +12,9 @@ import { DeviceComponent } from './device/device.component';
 import { LoginComponent } from './login/login.component';
 import { PlansComponent } from './plans/plans.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
+
+
 import { DevicePageComponent } from './device-page/device-page.component';
 import { DeviceFormComponent } from './device-form/device-form.component';
 
@@ -32,6 +35,7 @@ import { DeviceFormComponent } from './device-form/device-form.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
