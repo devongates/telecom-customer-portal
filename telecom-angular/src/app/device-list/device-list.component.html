@@ -53,14 +53,14 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Number</th>
-      <th scope="col">Plan</th>
+      <th scope="col">Phone Type</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let device of deviceList">
       <td>{{ device.phoneName }}</td>
       <td>{{ device.phoneNumber }}</td>
-      <!-- <td>{{ device.plan }}</td> -->
+      <td>{{ device.phoneType }}</td>
     </tr>
   </tbody>
 </table>
