@@ -23,6 +23,7 @@ export class DeviceComponent implements OnInit {
 	openEditor() {
 		this.service.changeIsEditing(true);
 		this.service.changePhone(this.phone);
+		window.scroll(0, 0);
 	}
 
 	formatPhone(phone: string): string {
