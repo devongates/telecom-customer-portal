@@ -20,8 +20,6 @@ export class DeviceListComponent implements OnInit {
 	ngOnInit(): void {
 		this.service.getPhones().subscribe(result => {
 			this.deviceList = result
-			console.log(result);
-
 		})
 
 	}
