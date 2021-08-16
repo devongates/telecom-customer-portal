@@ -24,4 +24,10 @@ export class DeviceService {
   createPhone(phone: Phone): Observable<any> {
     return this.http.post(this.phonesUrl, phone);
   }
+
+  updatePhone(id: number, phone: Phone): Observable<any> {
+    console.log(id);
+    console.log(phone);
+    return this.http.put(`${this.phonesUrl}/${id}`, phone);
+  }
 }
