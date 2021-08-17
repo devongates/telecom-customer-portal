@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DeviceService } from '../device.service';
+import { LocalDevicesService } from '../local-devices.service';
 import Phone from '../models/phone';
 
 @Component({
@@ -19,12 +20,11 @@ export class AddDeviceFormComponent implements OnInit {
     userPlanId: new FormControl('')
   });
 
-  constructor(private service: DeviceService) { }
+  constructor(private service: DeviceService, private localDeviceService: LocalDevicesService) { }
 
   onSubmit(): void {
     this.service.createPhone(this.phoneForm.value).subscribe(result => {
-      console.log(result);
-
+      this.localDeviceService.appendPhone(result);
     })
   }
 

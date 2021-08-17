@@ -15,11 +15,11 @@ export class EditDeviceService {
 
   constructor() { }
 
-  changePhone(phone: Phone) {
+  changePhone(phone: Phone): void {
     this.phoneSource.next(phone);
   }
 
-  changeIsEditing(isEditing: boolean) {
+  changeIsEditing(isEditing: boolean): void {
     this.isEditingSource.next(isEditing);
   }
 }

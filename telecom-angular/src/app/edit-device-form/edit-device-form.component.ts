@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { EditDeviceService } from '../edit-device.service';
 import { DeviceService } from '../device.service';
+import { LocalDevicesService } from '../local-devices.service';
 
 @Component({
   selector: 'app-edit-device-form',
@@ -19,7 +20,7 @@ export class EditDeviceFormComponent implements OnInit {
     userPlanId: new FormControl('')
   });
 
-  constructor(private editDeviceService: EditDeviceService, private deviceService: DeviceService) { }
+  constructor(private editDeviceService: EditDeviceService, private deviceService: DeviceService, private localDeviceService: LocalDevicesService) { }
 
   ngOnInit(): void {
     this.editDeviceService.currentPhone.subscribe(phone => {
@@ -30,8 +31,9 @@ export class EditDeviceFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.deviceService.updatePhone(this.id, this.phoneForm.value).subscribe(result => {
-      console.log(result);
+    const phone = this.phoneForm.value;
+    this.deviceService.updatePhone(this.id, phone).subscribe(result => {
+      this.localDeviceService.editPhone(this.id, phone);
     });
     this.editDeviceService.changeIsEditing(false);
   }
@@ -42,9 +44,9 @@ export class EditDeviceFormComponent implements OnInit {
 
   deletePhone(): void {
     this.deviceService.deletePhone(this.id).subscribe(result => {
-      console.log(result);
-
+      this.localDeviceService.deletePhone(this.id);
     })
+    this.editDeviceService.changeIsEditing(false);
   }
 
 }
