@@ -26,8 +26,10 @@ export class DeviceService {
   }
 
   updatePhone(id: number, phone: Phone): Observable<any> {
-    console.log(id);
-    console.log(phone);
     return this.http.put(`${this.phonesUrl}/${id}`, phone);
+  }
+
+  deletePhone(id: number): Observable<any> {
+    return this.http.delete(`${this.phonesUrl}/${id}`);
   }
 }
