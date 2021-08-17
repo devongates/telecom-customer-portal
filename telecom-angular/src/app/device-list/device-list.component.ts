@@ -19,6 +19,12 @@ export class DeviceListComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+
+		this.service.getUserData().subscribe(result => {
+			this.user = result;
+			console.log(this.user);
+    });
+
 		this.deviceService.getPhones().subscribe(result => {
 			this.localDeviceService.refreshPhones(result)
 		})

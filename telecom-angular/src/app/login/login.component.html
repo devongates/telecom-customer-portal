@@ -5,18 +5,19 @@
 		<div class="col-6">
 		<div class="card blue-card">
 
-			<form (ngSubmit)="test()">
+			<!-- method="post" action="http://127.0.0.1:9001/perform_login" -->
+			<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
 				<div class="mb-3">
-					<label for="exampleInputEmail1" class="form-label">
+					<label for="email" class="form-label">
 						Email address
 					</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+					<input type="email" id="email" name="email" class="form-control" placeholder="Email Address" autofocus required ngModel aria-describedby="emailHelp" />
 				</div>
 				<div class="mb-3">
-					<label for="exampleInputPassword1" class="form-label">
+					<label for="password" class="form-label">
 						Password
 					</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" />
+					<input type="password" id="password" name="password" class="form-control" placeholder="Password" required ngModel />
 				</div>
 				<button type="submit" class="btn green-btn">Login</button>
 			</form>

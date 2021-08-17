@@ -10,6 +10,8 @@ import com.example.demo.models.User;
 public interface UserRepository extends JpaRepository<User,Integer> {
 	
 	public User findByEmailAndPassword(String email,String password);
+
+	public User findByEmail(String username);
 	
 }
 
