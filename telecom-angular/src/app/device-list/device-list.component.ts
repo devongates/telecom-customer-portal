@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Phone from '../models/phone';
 import User from '../models/user';
 import { DeviceService } from '../device.service';
+import { LocalDevicesService } from '../local-devices.service';
 
 @Component({
 	selector: 'app-device-list',
@@ -14,14 +15,19 @@ export class DeviceListComponent implements OnInit {
 
 	deviceList: Array<Phone> = [];
 
-	constructor(private service: DeviceService) {
+	constructor(private deviceService: DeviceService, private localDeviceService: LocalDevicesService) {
 	}
 
 	ngOnInit(): void {
-		this.service.getPhones().subscribe(result => {
-			this.deviceList = result
+		this.deviceService.getPhones().subscribe(result => {
+			this.localDeviceService.appendPhones(result)
 		})
-
+		this.localDeviceService.getLocalDevices().subscribe(result => {
+			this.deviceList = result;
+		})
+		// this.service.getPhones().subscribe(result => {
+		// 	this.deviceList = result;
+		// })
 	}
 
 	displayLines(max: number): string {
