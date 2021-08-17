@@ -40,4 +40,11 @@ export class EditDeviceFormComponent implements OnInit {
     this.editDeviceService.changeIsEditing(false);
   }
 
+  deletePhone(): void {
+    this.deviceService.deletePhone(this.id).subscribe(result => {
+      console.log(result);
+
+    })
+  }
+
 }
