@@ -20,14 +20,11 @@ export class DeviceListComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.deviceService.getPhones().subscribe(result => {
-			this.localDeviceService.appendPhones(result)
+			this.localDeviceService.refreshPhones(result)
 		})
-		this.localDeviceService.getLocalDevices().subscribe(result => {
+		this.localDeviceService.currentPhones.subscribe(result => {
 			this.deviceList = result;
 		})
-		// this.service.getPhones().subscribe(result => {
-		// 	this.deviceList = result;
-		// })
 	}
 
 	displayLines(max: number): string {
