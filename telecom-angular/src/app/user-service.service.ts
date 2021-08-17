@@ -17,6 +17,8 @@ export class UserServiceService {
 	constructor(private http: HttpClient) { }
 
 	login(email:string, password:string):Observable<any>{
+		console.log("depricated");
+		
 		
         this.headers = new HttpHeaders({
             authorization : 'Basic ' + btoa(email + ':' + password)
@@ -24,11 +26,14 @@ export class UserServiceService {
 		this.email=email;
 		return this.http.get(`${this.url}auth`
 				, {headers: this.headers});
+				
 
     }
 
 
 	getUserData():Observable<any>{
+		console.log("depricated");
+
 		// const headers = new HttpHeaders({
         //     authorization : 'Basic ' + btoa('user:password')
         // });

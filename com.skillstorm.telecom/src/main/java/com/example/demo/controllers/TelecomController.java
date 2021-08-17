@@ -34,10 +34,9 @@ public class TelecomController {
 	@Autowired
 	private TelecomService service;
 	
-	
 	@GetMapping("/auth")
-	public boolean login(){
-		return true;
+	public ResponseEntity<Boolean> login() {
+		return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 	
 
@@ -54,8 +53,13 @@ public class TelecomController {
 	}
 
 	@GetMapping("/user")
-	public ResponseEntity<User> getUser(@RequestParam (value="email", required=true) String email){
-		return new ResponseEntity<>(service.getUser(email), HttpStatus.OK);
+	public ResponseEntity<Integer> getUserId(@RequestParam (value="email", required=true) String email){
+		return new ResponseEntity<>(service.getUserId(email), HttpStatus.OK);
+	}
+	
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<User> getUser(@PathVariable("userId") int userId){
+		return new ResponseEntity<>(service.getUser(userId), HttpStatus.OK);
 	}
 	
 	@PostMapping("/user")

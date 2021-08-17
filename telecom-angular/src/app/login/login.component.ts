@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 import { UserServiceService } from '../user-service.service';
 
@@ -9,20 +10,16 @@ import { UserServiceService } from '../user-service.service';
 	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-	service: UserServiceService;
 
-	constructor(service: UserServiceService) {
-		this.service = service;
-
+	constructor(private apiService: ApiService) {
 	}
+
 	ngOnInit(): void {
 	}
 
 	onSubmit(idk:any):void{
 		console.log(idk);
-		this.service.login(idk.email,idk.password).subscribe((response)=>{
-			console.log(response);
-		});
+		this.apiService.login(idk.email,idk.password);
 		
 	}
 
