@@ -25,7 +25,7 @@ export class DeviceListComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.service.getUserData("todd@emert.com", "1234").subscribe(result => {
+		this.service.getUserData().subscribe(result => {
 			this.user = result;
 			console.log(this.user);
 

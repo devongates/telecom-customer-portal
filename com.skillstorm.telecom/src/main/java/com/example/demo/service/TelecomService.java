@@ -42,8 +42,8 @@ public class TelecomService {
 		return userRepo.findAll();
 	}
 	
-	public User getUser(String email, String password){
-		return userRepo.findByEmailAndPassword(email,password);
+	public User getUser(String email){
+		return userRepo.findByEmail(email);
 	}
 	
 	public User createNewUser(User user) {

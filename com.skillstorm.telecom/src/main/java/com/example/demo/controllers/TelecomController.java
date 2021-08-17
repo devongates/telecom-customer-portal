@@ -34,6 +34,12 @@ public class TelecomController {
 	@Autowired
 	private TelecomService service;
 	
+	
+	@GetMapping("/auth")
+	public boolean login(){
+		return true;
+	}
+	
 
 //	   __  _______ __________ 
 //	  / / / / ___// ____/ __ \
@@ -48,9 +54,8 @@ public class TelecomController {
 	}
 
 	@GetMapping("/user")
-	public ResponseEntity<User> getUser(@RequestParam (value="email", required=true) String email,
-			@RequestParam (value="password", required=true) String password){
-		return new ResponseEntity<>(service.getUser(email, password), HttpStatus.OK);
+	public ResponseEntity<User> getUser(@RequestParam (value="email", required=true) String email){
+		return new ResponseEntity<>(service.getUser(email), HttpStatus.OK);
 	}
 	
 	@PostMapping("/user")
