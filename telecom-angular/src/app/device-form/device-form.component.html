@@ -1,27 +1,4 @@
-<form [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
-    <label for="name" class="form-label">Device Name</label>
-    <input type="text" class="form-control" id="name" formControlName="name" />
-  </div>
-  <div class="mb-3">
-    <label for="phone-number" class="form-label">Phone Number</label>
-    <input
-      type="text"
-      class="form-control"
-      id="phone-number"
-      formControlName="phoneNumber"
-    />
-  </div>
-  <div class="mb-3">
-    <label for="phone-type" class="form-label">Phone Type</label>
-    <input
-      type="text"
-      class="form-control"
-      id="phone-type"
-      formControlName="phoneType"
-    />
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!phoneForm.valid">
-    Submit
-  </button>
-</form>
+<app-edit-device-form *ngIf="isEditing; else elseBlock"></app-edit-device-form>
+<ng-template #elseBlock>
+  <app-add-device-form></app-add-device-form>
+</ng-template>

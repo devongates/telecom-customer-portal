@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { EditDeviceService } from '../edit-device.service';
 
 @Component({
   selector: 'app-device-form',
@@ -8,21 +8,15 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class DeviceFormComponent implements OnInit {
 
-  phoneForm = new FormGroup({
-    name: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    phoneType: new FormControl('')
-  });
+  isEditing: boolean = false;
 
-  constructor() { }
-
-  onSubmit(): void {
-    console.log(this.phoneForm.value);
-    // TODO: Send to db and append to device list
-
+  constructor(private service: EditDeviceService) {
   }
 
   ngOnInit(): void {
+    this.service.currentIsEditing.subscribe(isEditing => {
+      this.isEditing = isEditing;
+    })
   }
 
 }

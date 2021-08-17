@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DeviceListComponent } from './device-list/device-list.component';
 import { DevicePageComponent } from './device-page/device-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';

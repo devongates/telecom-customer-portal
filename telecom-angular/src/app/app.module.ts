@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 
 
 import { DevicePageComponent } from './device-page/device-page.component';
+import { AddDeviceFormComponent } from './add-device-form/add-device-form.component';
+import { EditDeviceFormComponent } from './edit-device-form/edit-device-form.component';
 import { DeviceFormComponent } from './device-form/device-form.component';
 
 @NgModule({
@@ -29,6 +31,8 @@ import { DeviceFormComponent } from './device-form/device-form.component';
     PlansComponent,
     HomeComponent,
     DevicePageComponent,
+    AddDeviceFormComponent,
+    EditDeviceFormComponent,
     DeviceFormComponent
   ],
   imports: [
