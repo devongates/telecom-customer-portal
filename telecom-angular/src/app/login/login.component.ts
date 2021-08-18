@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 import { UserServiceService } from '../user-service.service';
@@ -11,15 +12,16 @@ import { UserServiceService } from '../user-service.service';
 })
 export class LoginComponent implements OnInit {
 
-	constructor(private apiService: ApiService) {
+	constructor(private apiService: ApiService, private router: Router) {
 	}
 
 	ngOnInit(): void {
 	}
 
 	onSubmit(idk:any):void{
-		console.log(idk);
-		this.apiService.login(idk.email,idk.password);
+		this.apiService.login(idk.email,idk.password,()=>{
+			this.router.navigate(["devices"]);
+		});
 		
 	}
 

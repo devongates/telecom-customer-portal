@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import Phone from './models/phone';
+import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,24 +12,30 @@ export class ApiService {
 	url = 'http://localhost:9001/api/v1/telecom/';
 	authenticated = false;
 	headers!: HttpHeaders;
-	//email!: string;
 	userId!: number;
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient, private router: Router) { }
 
-	login(email: string, password: string): boolean {
+	login(email: string, password: string, callback:any): void {
 		this.headers = new HttpHeaders({
 			authorization: 'Basic ' + btoa(email + ':' + password)
 		});
 
 		this.http.get(`${this.url}user?email=${email}`, { headers: this.headers }).subscribe((resp) => {
-
-			console.log('resp');
-			console.log(resp);
-
 			this.userId = parseInt(resp.toString());
+			console.log(this.headers);
+			
+			this.authenticated=true;
+			callback();
 		});
-		return true;
+	}
+
+	logout():void{
+		this.userId = 0;
+		this.headers=new HttpHeaders();
+		this.authenticated=false;
+		//route
+		this.router.navigate([""]);
 	}
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
-  constructor() { }
+	
+	apiService: ApiService;
+	constructor(apiService: ApiService) {
+		this.apiService=apiService;
+	}
 
   ngOnInit(): void {
   }
