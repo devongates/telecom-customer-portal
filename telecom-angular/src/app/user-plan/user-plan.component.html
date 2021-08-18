@@ -16,7 +16,7 @@
         class="container d-flex justify-content-center my-0 py-0"
         *ngIf="userPlan.phones.length < userPlan.plan.maxNumLines"
       >
-        <button class="btn" (click)="addPhone()">
+        <button class="btn" routerLink="/devices" routerLinkActive="active">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="42"

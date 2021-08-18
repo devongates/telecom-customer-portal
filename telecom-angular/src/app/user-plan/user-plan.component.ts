@@ -13,13 +13,7 @@ export class UserPlanComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
-  addPhone() {
-    console.log('hi');
-
-  }
+  ngOnInit(): void { }
 
   formatPhone(phone: string): string {
     let match = phone.match(/^(\d{3})(\d{3})(\d{4})$/);
