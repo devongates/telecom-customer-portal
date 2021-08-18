@@ -22,6 +22,7 @@ import { DeviceFormComponent } from './device-form/device-form.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { UserPlanComponent } from './user-plan/user-plan.component';
 import { UserPlansComponent } from './user-plans/user-plans.component';
+import { BillComponent } from './bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserPlansComponent } from './user-plans/user-plans.component';
     DeviceFormComponent,
     NewUserComponent,
     UserPlanComponent,
-    UserPlansComponent
+    UserPlansComponent,
+    BillComponent
   ],
   imports: [
     BrowserModule,

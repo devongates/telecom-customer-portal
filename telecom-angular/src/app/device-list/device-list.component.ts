@@ -19,7 +19,6 @@ export class DeviceListComponent implements OnInit {
 	//service: UserServiceService;
 
 	constructor(private apiService: ApiService,
-		//private deviceService: DeviceService, 
 		private localDeviceService: LocalDevicesService) {
 	}
 
