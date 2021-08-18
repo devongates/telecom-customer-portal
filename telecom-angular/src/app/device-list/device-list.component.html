@@ -1,12 +1,12 @@
 <div class="container-fluid text-center">
-  <!--<div class="row my-5" *ngFor="let userPlan of user.userPlans">
+  <div class="row my-5" *ngFor="let userPlan of user.userPlans">
     <div class="col-2">
       <div class="card peach-card">
         <div class="fs-5 fw-bold">
           {{ userPlan.plan.name }}
         </div>
         <div>{{ displayLines(userPlan.plan.maxNumLines) }}</div>
-             <div>{{userPlan.plan}}</div>
+             <!-- <div>{{userPlan.plan}}</div> -->
       </div>
     </div>
     <div class="col-10">
@@ -43,52 +43,20 @@
   <div class="card blue-card">
     <button>Add New Plan</button>
   </div>
-</div>
 
-     <br />
-     <br /> -->
-
+<!-- 
   <table class="table white-table">
-    <!-- <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Number</th>
-        <th scope="col">Phone Type</th>
-      </tr>
-    </thead> -->
+    
     <tbody>
-      <!-- <tr *ngFor="letdevice of deviceList">
-        <td>{{ device.phoneName }}</td>
-        <td>{{ device.phoneNumber }}</td>
-        <td>{{ device.phoneType }}</td>
-      </tr> -->
+     
       <tr *ngFor="let device of deviceList">
         <app-device [phone]="device"></app-device>
       </tr>
     </tbody>
-  </table>
-
-  <!-- <br />
-  <br />
-
-  <div *ngFor="let userPlan of user.userPlans">
-    {{ userPlan.plan.name }}
-    <ul *ngFor="let phone of userPlan.phones">
-      <li>{{ phone.phoneName + " : " + phone.phoneNumber }}</li>
-    </ul>
-  </div>
-
-  <br />
-  <br />
-
-  <table class="table white-table" *ngFor="let userPlan of user.userPlans">
-    {{
-      userPlan.plan.name
-    }}
-    <tr *ngFor="let phone of userPlan.phones">
-      <td>{{ phone.phoneName }}</td>
-      <td>{{ phone.phoneNumber }}</td>
-      <td>{{ phone.phoneType }}</td>
-    </tr>
   </table> -->
+
 </div>
+
+<br />
+<br />
+
