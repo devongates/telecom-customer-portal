@@ -22,7 +22,12 @@ export class LoginComponent implements OnInit {
 		this.apiService.login(idk.email,idk.password,()=>{
 			this.router.navigate(["devices"]);
 		});
-		
 	}
+
+	// onSubmit():void{
+	// 	this.apiService.login(idk.email,idk.password,()=>{
+	// 		this.router.navigate(["login/newuser"]);
+	// 	});
+	// }
 
 }
