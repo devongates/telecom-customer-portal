@@ -1,7 +1,15 @@
 <div class="card green-card" style="width: 18rem">
   <div class="card-body">
-    <h5 class="card-title mb-5">Plan Id: {{ userPlan.planId }}</h5>
-    <p>UserPlan Id: {{ userPlan.id }}</p>
-    <p>User Id: {{ userPlan.userId }}</p>
+    <h5 class="card-title mb-5">{{ userPlan.plan.name }}</h5>
+    <p>Lines: {{ userPlan.phones.length }}/{{ userPlan.plan.maxNumLines }}</p>
+    <p>Phones:</p>
+    <table class="table green-table">
+      <tbody>
+        <tr *ngFor="let phone of userPlan.phones">
+          <td>{{ phone.phoneName }}</td>
+          <td>{{ formatPhone(phone.phoneNumber) }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
