@@ -18,7 +18,7 @@ export class DeviceListComponent implements OnInit {
 	deviceList: Array<Phone> = [];
 	//service: UserServiceService;
 
-	constructor(private apiService: ApiService, 
+	constructor(private apiService: ApiService,
 		//private deviceService: DeviceService, 
 		private localDeviceService: LocalDevicesService) {
 	}
@@ -27,8 +27,7 @@ export class DeviceListComponent implements OnInit {
 
 		this.apiService.getUserData().subscribe(result => {
 			this.user = result;
-			console.log(this.user);
-    	});
+		});
 
 		this.apiService.getPhones().subscribe(result => {
 			this.localDeviceService.refreshPhones(result)
