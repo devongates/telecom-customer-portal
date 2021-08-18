@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="row">
+		<div class="col"></div>
+		
+		<div class="col-6">
+		<div class="card green-card">
+
+			<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value.password2)">
+				<div class="mb-3">
+					<label for="email" class="form-label">
+						Email address
+					</label>
+					<input type="email" id="email" name="email" class="form-control"
+					[(ngModel)]="newUser.email" 
+					placeholder="Email Address" autofocus required/>
+				</div>
+				<div class="mb-3">
+					<label for="password" class="form-label">
+						Password
+					</label>
+					<input type="password" id="password" name="password" class="form-control" 
+					[(ngModel)]="newUser.password" 
+					placeholder="Password" required />
+				</div>
+				<div class="mb-3">
+					<label for="password" class="form-label">
+						Re-Type Password
+					</label>
+					<input type="password" id="password2" name="password2" class="form-control" 
+					placeholder="Password" required ngModel />
+				</div>
+					<button type="submit" class="btn blue-btn">Create Account</button>
+			</form>
+
+		</div>
+		</div>
+
+		<div class="col"></div>
+	</div>
+</div>

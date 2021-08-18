@@ -62,7 +62,7 @@ public class TelecomController {
 		return new ResponseEntity<>(service.getUser(userId), HttpStatus.OK);
 	}
 	
-	@PostMapping("/user")
+	@PostMapping("/newuser")
 	public ResponseEntity<User> createNewUser(@RequestBody @Valid User user){
 		return new ResponseEntity<>(service.createNewUser(user), HttpStatus.CREATED);
 	}

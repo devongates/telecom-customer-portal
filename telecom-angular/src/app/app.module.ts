@@ -19,6 +19,7 @@ import { DevicePageComponent } from './device-page/device-page.component';
 import { AddDeviceFormComponent } from './add-device-form/add-device-form.component';
 import { EditDeviceFormComponent } from './edit-device-form/edit-device-form.component';
 import { DeviceFormComponent } from './device-form/device-form.component';
+import { NewUserComponent } from './new-user/new-user.component';
 import { UserPlanComponent } from './user-plan/user-plan.component';
 import { UserPlansComponent } from './user-plans/user-plans.component';
 
@@ -36,6 +37,7 @@ import { UserPlansComponent } from './user-plans/user-plans.component';
     AddDeviceFormComponent,
     EditDeviceFormComponent,
     DeviceFormComponent,
+    NewUserComponent,
     UserPlanComponent,
     UserPlansComponent
   ],

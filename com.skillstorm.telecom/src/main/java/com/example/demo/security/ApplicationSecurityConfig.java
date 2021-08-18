@@ -33,8 +33,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeRequests()
-			 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-			.anyRequest().authenticated()
+				.antMatchers(
+					  "/api/v1/telecom/plans"
+					 ,"/api/v1/telecom/phone"
+					 ,"/api/v1/telecom/newuser"
+					 ,"/api/v1/telecom/auth"
+					 ).permitAll()
+			 	.anyRequest().authenticated()
 			.and()
 			.httpBasic();
 //			.formLogin()

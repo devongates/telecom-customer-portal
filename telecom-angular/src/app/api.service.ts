@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import Phone from './models/phone';
 import UserPlan from './models/userPlan';
 import { Router } from '@angular/router';
+import User from './models/user';
 
 @Injectable({
 	providedIn: 'root'
@@ -28,7 +29,21 @@ export class ApiService {
 
 		this.http.get(`${this.url}user?email=${email}`, { headers: this.headers }).subscribe((resp) => {
 			this.userId = parseInt(resp.toString());
-			this.authenticated = true;
+			this.authenticated=true;
+			callback();
+		});
+	}
+
+	//@PostMapping("/user")
+	//public ResponseEntity<User> createNewUser(@RequestBody @Valid User user){
+	createNewUser(user:User, callback:any):void{
+		this.http.post(`${this.url}newuser`, user).subscribe((resp)=>{
+			this.headers = new HttpHeaders({
+				authorization: 'Basic ' + btoa(user.email + ':' + user.password)
+			});
+			
+			this.userId = parseInt(resp.toString());			
+			this.authenticated=true;
 			callback();
 		});
 	}
@@ -40,7 +55,6 @@ export class ApiService {
 		//route
 		this.router.navigate([""]);
 	}
-
 
 	getUserData(): Observable<any> {
 		return this.http.get(`${this.url}user/${this.userId}`
