@@ -88,6 +88,10 @@ public class TelecomController {
 //	                                                    
 
 	
+	@GetMapping("/userplans")
+	public ResponseEntity<List<UserPlan>> getUserPlans() {
+		return new ResponseEntity<>(service.getUserPlans(), HttpStatus.OK);
+	}
 	@GetMapping("/userplans/{userplanId}")
 	public ResponseEntity<UserPlan> getUserPlan(@PathVariable("userplanId") int userplanId){
 		return new ResponseEntity<>(service.getUserPlan(userplanId), HttpStatus.OK);
