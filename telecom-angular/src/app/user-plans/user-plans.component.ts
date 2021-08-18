@@ -22,4 +22,9 @@ export class UserPlansComponent implements OnInit {
     })
   }
 
+  createNewPlan(): void {
+    console.log('hi');
+
+  }
+
 }
