@@ -20,6 +20,8 @@ import { AddDeviceFormComponent } from './add-device-form/add-device-form.compon
 import { EditDeviceFormComponent } from './edit-device-form/edit-device-form.component';
 import { DeviceFormComponent } from './device-form/device-form.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { UserPlanComponent } from './user-plan/user-plan.component';
+import { UserPlansComponent } from './user-plans/user-plans.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { NewUserComponent } from './new-user/new-user.component';
     AddDeviceFormComponent,
     EditDeviceFormComponent,
     DeviceFormComponent,
-    NewUserComponent
+    NewUserComponent,
+    UserPlanComponent,
+    UserPlansComponent
   ],
   imports: [
     BrowserModule,

@@ -5,12 +5,13 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { PlansComponent } from './plans/plans.component';
+import { UserPlansComponent } from './user-plans/user-plans.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/newuser', component: NewUserComponent },
-  { path: 'plans', component: PlansComponent },
+  { path: 'plans', component: UserPlansComponent },
   { path: 'devices', component: DevicePageComponent }
 ];
 
