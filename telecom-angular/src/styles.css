@@ -113,3 +113,7 @@ nav {
 .green-text {
   color: var(--c-green);
 }
+
+.bi-plus-circle {
+  fill: var(--c-white);
+}
