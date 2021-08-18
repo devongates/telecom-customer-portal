@@ -138,6 +138,10 @@ public class TelecomService {
 		User user = userRepo.getById(userId);
 		return user.getUserPlans();
 	}
+	
+	public List<UserPlan> getUserPlans() {
+		return userplanRepo.findAll();
+	}
 
 	public UserPlan getUserPlan(int userplanId) {
 		Optional<UserPlan> userplanData = userplanRepo.findById(userplanId);

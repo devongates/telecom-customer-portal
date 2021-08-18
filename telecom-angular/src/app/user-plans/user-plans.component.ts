@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import UserPlan from '../models/userPlan';
+import { UserplanService } from '../userplan.service';
 
 @Component({
   selector: 'app-user-plans',
@@ -19,9 +20,14 @@ export class UserPlansComponent implements OnInit {
     new UserPlan()
   ];
 
-  constructor() { }
+  constructor(private service: UserplanService) { }
 
   ngOnInit(): void {
+    this.service.getUserplans().subscribe(result => {
+      console.log(result);
+
+      this.userPlans = result;
+    })
   }
 
 }
