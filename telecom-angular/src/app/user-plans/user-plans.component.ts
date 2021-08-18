@@ -10,21 +10,14 @@ import { ApiService } from '../api.service';
 })
 export class UserPlansComponent implements OnInit {
 
-  userPlans: Array<UserPlan> = [
-    new UserPlan(),
-    new UserPlan(),
-    new UserPlan(),
-    new UserPlan(),
-    new UserPlan(),
-    new UserPlan(),
-    new UserPlan(),
-    new UserPlan()
-  ];
+  userPlans: Array<UserPlan> = [];
 
   constructor(private service: ApiService) { }
 
   ngOnInit(): void {
     this.service.getUserplans().subscribe(result => {
+      console.log(result);
+
       this.userPlans = result;
     })
   }
