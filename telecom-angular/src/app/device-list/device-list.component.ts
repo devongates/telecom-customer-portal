@@ -16,22 +16,23 @@ import { AddDeviceFormComponent } from '../add-device-form/add-device-form.compo
 })
 export class DeviceListComponent implements OnInit {
 
-	user: User = new User();
+	//user!: User;
 
 	//deviceList: Array<Phone> = [];
 	//service: UserServiceService;
 
-	constructor(private apiService: ApiService,
+	constructor(public apiService: ApiService,
 		private localDeviceService: LocalDevicesService,
 		public modalService: NgbModal
 		) {
 	}
 
 	ngOnInit(): void {
-
-		this.apiService.getUserData().subscribe(result => {
-			this.user = result;
-		});
+		
+		this.apiService.getUserData();
+		// .subscribe(result => {
+		// 	this.user = result;
+		// });
 
 		// this.apiService.getPhones().subscribe(result => {
 		// 	this.localDeviceService.refreshPhones(result)
@@ -48,9 +49,10 @@ export class DeviceListComponent implements OnInit {
 		return `Up to ${max} lines available`
 	}
 
-	openCreator():void{
+	openCreator(id:number):void{
 		const modalRef =this.modalService.open(AddDeviceFormComponent);
 		modalRef.componentInstance.name="AddModal";
+		modalRef.componentInstance.userPlanId=id;
 	}
 
 

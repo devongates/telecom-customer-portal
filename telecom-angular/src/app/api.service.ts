@@ -13,6 +13,9 @@ export class ApiService {
 
 	url = 'http://localhost:9001/api/v1/telecom/';
 	heads!:HttpHeaders;
+	
+	user!:User;
+
 	//authenticated = false;
 	//headers!: HttpHeaders;
 	//userId!: number;
@@ -23,6 +26,8 @@ export class ApiService {
 			this.heads=new HttpHeaders({
 				authorization: header
 			});
+
+			this.getUserData();
 		}
 	}
 
@@ -75,9 +80,15 @@ export class ApiService {
 		this.router.navigate([""]);
 	}
 
-	getUserData(): Observable<any> {
-		return this.http.get(`${this.url}user/${this.getUserId()}`
-			, { headers: this.getHeaders() });
+	getUserData(): void {
+		this.http.get(`${this.url}user/${this.getUserId()}`
+			, { headers: this.getHeaders() }).subscribe(resp=>{
+				this.user=resp as User;
+				console.log(resp);
+				console.log(this.user);
+				
+				
+			});
 	}
 
 
@@ -116,6 +127,21 @@ export class ApiService {
 			, { headers: this.getHeaders() });
 	}
 
+	appendPhone(phone:Phone):void{
+		for(let plan of this.user.userPlans){
+			
+			plan.phones.forEach((ph,i)=>{
+				if(ph.phoneNumber===phone.phoneNumber){
+					plan.phones.splice(i,1);
+				}
+			});
+
+			if(plan.id===phone.userPlanId){
+				plan.phones.push(phone);
+			}
+
+		}
+	}
 
 
 	//    __  _______ __________  ____  __    ___    _   __

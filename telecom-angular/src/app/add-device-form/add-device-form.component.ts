@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../api.service';
@@ -7,34 +7,36 @@ import { LocalDevicesService } from '../local-devices.service';
 import Phone from '../models/phone';
 
 @Component({
-  selector: 'app-add-device-form',
-  templateUrl: './add-device-form.component.html',
-  styleUrls: ['./add-device-form.component.css']
+	selector: 'app-add-device-form',
+	templateUrl: './add-device-form.component.html',
+	styleUrls: ['./add-device-form.component.css']
 })
 export class AddDeviceFormComponent implements OnInit {
+	@Input() userPlanId!:number;
+	phone!: Phone;
 
-  phone!: Phone;
+	phoneForm = new FormGroup({
+		phoneName: new FormControl(''),
+		phoneNumber: new FormControl(''),
+		phoneType: new FormControl(''),
+		
+	});
 
-  phoneForm = new FormGroup({
-    phoneName: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    phoneType: new FormControl(''),
-    userPlanId: new FormControl('')
-  });
+	constructor(private service: ApiService
+		, private localDeviceService: LocalDevicesService
+		, public activeModal: NgbActiveModal) { }
 
-  constructor(private service: ApiService
-	,private localDeviceService: LocalDevicesService
-	,public activeModal: NgbActiveModal) { }
+	onSubmit(): void {
+		let phone=this.phoneForm.value;
+		phone.userPlanId=this.userPlanId;
+		this.service.createPhone(phone).subscribe(result => {
+			//this.localDeviceService.appendPhone(result);
+			this.service.appendPhone(result);
+			this.activeModal.close();
+		})
+	}
 
-  onSubmit(): void {
-	this.activeModal.close();
-    this.service.createPhone(this.phoneForm.value).subscribe(result => {
-      this.localDeviceService.appendPhone(result);
-	  
-    })
-  }
-
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
 }

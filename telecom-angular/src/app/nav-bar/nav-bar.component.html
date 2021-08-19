@@ -14,7 +14,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li *ngIf="!apiService.authenticated; else myplans" class="nav-item">
+        <li *ngIf="!apiService.isAuthenticated(); else myplans" class="nav-item">
           <a class="nav-link" routerLink="/plans" routerLinkActive="active">
             Plans
           </a>
@@ -28,7 +28,7 @@
             >
           </li>
         </ng-template>
-        <li class="nav-item" *ngIf="apiService.authenticated">
+        <li class="nav-item" *ngIf="apiService.isAuthenticated()">
           <a class="nav-link" routerLink="/devices" routerLinkActive="active">
             Devices
           </a>
