@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { EditDeviceService } from '../edit-device.service';
 import { DeviceService } from '../device.service';
 import { LocalDevicesService } from '../local-devices.service';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-edit-device-form',
@@ -20,7 +21,7 @@ export class EditDeviceFormComponent implements OnInit {
     userPlanId: new FormControl('')
   });
 
-  constructor(private editDeviceService: EditDeviceService, private deviceService: DeviceService, private localDeviceService: LocalDevicesService) { }
+  constructor(private editDeviceService: EditDeviceService, private deviceService: ApiService, private localDeviceService: LocalDevicesService) { }
 
   ngOnInit(): void {
     this.editDeviceService.currentPhone.subscribe(phone => {

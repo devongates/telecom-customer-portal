@@ -1,4 +1,7 @@
-<app-edit-device-form *ngIf="isEditing; else elseBlock"></app-edit-device-form>
-<ng-template #elseBlock>
-  <app-add-device-form></app-add-device-form>
-</ng-template>
+
+<div class="modal-body">
+	<app-edit-device-form *ngIf="isEditing; else elseBlock"></app-edit-device-form>
+	<ng-template #elseBlock>
+		<app-add-device-form></app-add-device-form>
+	</ng-template>
+</div>

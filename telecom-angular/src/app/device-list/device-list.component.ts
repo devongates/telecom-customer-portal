@@ -5,6 +5,9 @@ import { DeviceService } from '../device.service';
 import { LocalDevicesService } from '../local-devices.service';
 import { UserServiceService } from '../user-service.service';
 import { ApiService } from '../api.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeviceFormComponent } from '../device-form/device-form.component';
+import { AddDeviceFormComponent } from '../add-device-form/add-device-form.component';
 
 @Component({
 	selector: 'app-device-list',
@@ -15,11 +18,13 @@ export class DeviceListComponent implements OnInit {
 
 	user: User = new User();
 
-	deviceList: Array<Phone> = [];
+	//deviceList: Array<Phone> = [];
 	//service: UserServiceService;
 
 	constructor(private apiService: ApiService,
-		private localDeviceService: LocalDevicesService) {
+		private localDeviceService: LocalDevicesService,
+		public modalService: NgbModal
+		) {
 	}
 
 	ngOnInit(): void {
@@ -28,12 +33,12 @@ export class DeviceListComponent implements OnInit {
 			this.user = result;
 		});
 
-		this.apiService.getPhones().subscribe(result => {
-			this.localDeviceService.refreshPhones(result)
-		})
-		this.localDeviceService.currentPhones.subscribe(result => {
-			this.deviceList = result;
-		})
+		// this.apiService.getPhones().subscribe(result => {
+		// 	this.localDeviceService.refreshPhones(result)
+		// })
+		// this.localDeviceService.currentPhones.subscribe(result => {
+		// 	this.deviceList = result;
+		// })
 	}
 
 	displayLines(max: number): string {
@@ -41,6 +46,11 @@ export class DeviceListComponent implements OnInit {
 			return "Only one line available"
 		}
 		return `Up to ${max} lines available`
+	}
+
+	openCreator():void{
+		const modalRef =this.modalService.open(AddDeviceFormComponent);
+		modalRef.componentInstance.name="AddModal";
 	}
 
 

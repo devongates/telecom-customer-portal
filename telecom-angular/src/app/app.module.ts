@@ -14,6 +14,8 @@ import { PlansComponent } from './plans/plans.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 
+//import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { DevicePageComponent } from './device-page/device-page.component';
 import { AddDeviceFormComponent } from './add-device-form/add-device-form.component';
@@ -23,6 +25,7 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { UserPlanComponent } from './user-plan/user-plan.component';
 import { UserPlansComponent } from './user-plans/user-plans.component';
 import { BillComponent } from './bill/bill.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { BillComponent } from './bill/bill.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
