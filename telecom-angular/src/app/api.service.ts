@@ -197,4 +197,18 @@ export class ApiService {
 		return this.http.delete(`${this.userplansUrl}/${id}`
 			, { headers: this.getHeaders() });
 	}
+
+
+
+	//     ____  __    ___    _   __
+	//    / __ \/ /   /   |  / | / /
+	//   / /_/ / /   / /| | /  |/ / 
+	//  / ____/ /___/ ___ |/ /|  /  
+	// /_/   /_____/_/  |_/_/ |_/   
+
+	plansUrl = 'http://localhost:9001/api/v1/telecom/plans'
+
+	getPlans(): Observable<any> {
+		return this.http.get(this.plansUrl, { headers: this.getHeaders() })
+	}
 }

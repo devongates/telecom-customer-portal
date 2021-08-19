@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Plan from '../models/plan';
 
 @Component({
@@ -8,7 +8,7 @@ import Plan from '../models/plan';
 })
 export class PlanCardComponent implements OnInit {
 
-  plan: Plan = new Plan(2, 4, 35, 25);
+  @Input() plan!: Plan;
 
   constructor() { }
 
