@@ -14,7 +14,7 @@ export class ApiService {
 	url = 'http://localhost:9001/api/v1/telecom/';
 	heads!: HttpHeaders;
 
-	user!: User;
+	user: User = new User();
 
 	//authenticated = false;
 	//headers!: HttpHeaders;
@@ -87,8 +87,6 @@ export class ApiService {
 		this.http.get(`${this.url}user/${this.getUserId()}`
 			, { headers: this.getHeaders() }).subscribe(resp => {
 				this.user = resp as User;
-				console.log(resp);
-				console.log(this.user);
 			});
 		return of(this.user);
 	}
@@ -111,9 +109,6 @@ export class ApiService {
 	}
 
 	createPhone(phone: Phone): Observable<any> {
-		// console.log("this.header");
-		// console.log(this.headers);
-
 		return this.http.post(`${this.url}phones`, phone
 			, { headers: this.getHeaders() });
 	}

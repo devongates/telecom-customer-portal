@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EditDeviceService } from '../edit-device.service';
 import { DeviceService } from '../device.service';
 import { LocalDevicesService } from '../local-devices.service';
@@ -14,18 +14,22 @@ import Phone from '../models/phone';
 })
 export class EditDeviceFormComponent implements OnInit {
 	@Input() phone!: Phone;
-	//id!: number;
+	submitted = false;
 
 	phoneForm = new FormGroup({
-		phoneName: new FormControl(''),
-		phoneNumber: new FormControl(''),
-		phoneType: new FormControl(''),
-		//userPlanId: new FormControl('')
+		phoneName: new FormControl('',[
+			Validators.required,
+     		Validators.minLength(4)
+		]),
+		phoneNumber: new FormControl('',[
+			Validators.required,
+     		Validators.pattern(/^\d{10}$/)
+		]),
+		phoneType: new FormControl('')
+		
 	});
 
 	constructor(private apiService: ApiService
-		//, private editDeviceService: EditDeviceService
-		//, private localDeviceService: LocalDevicesService
 		, public activeModal: NgbActiveModal) { }
 
 	ngOnInit(): void {
@@ -34,22 +38,26 @@ export class EditDeviceFormComponent implements OnInit {
 	}
 
 	onSubmit(): void {
-		const phone = this.phoneForm.value;
-		phone.id = this.phone.id;
-		phone.userPlanId = this.phone.userPlanId;
-		this.apiService.updatePhone(this.phone.id, phone).subscribe(() => {
+		this.submitted = true;
+		if (this.phoneForm.valid) {
+			const phone = this.phoneForm.value;
+			phone.id = this.phone.id;
+			phone.userPlanId = this.phone.userPlanId;
+			this.apiService.updatePhone(this.phone.id, phone).subscribe(() => {
 
-			this.apiService.replacePhone(phone);
-			this.activeModal.close();
-		})
+				this.apiService.replacePhone(phone);
+				this.activeModal.close();
+			})
+		}
 	}
 
-
 	deletePhone(): void {
-		this.apiService.deletePhone(this.phone.id).subscribe(()=>{
+		this.apiService.deletePhone(this.phone.id).subscribe(() => {
 			this.apiService.unappendPhone(this.phone);
 			this.activeModal.close();
 		})
 	}
+
+	get f() { return this.phoneForm.controls; }
 
 }
