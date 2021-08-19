@@ -9,15 +9,21 @@ import UserPlan from '../models/userPlan';
 })
 export class BillComponent implements OnInit {
 
-	//plans:Array<UserPlan>;
+	plans!: Array<UserPlan>;
+	total: number = 0;
 
 	constructor(private apiService: ApiService) {
 	}
 
 	ngOnInit(): void {
-		// this.apiService.getUserData().subscribe(result => {
-		// 	this.plans = result.userPlans;
-		// });
+		this.apiService.getUserData().subscribe(result => {
+			if (result) {
+				this.plans = result.userPlans;
+				for (let plan of this.plans) {
+					this.total += plan.plan.baseCost + (plan.phones.length * plan.plan.costPerLine);
+				}
+			}
+		});
 	}
 
 }

@@ -12,18 +12,18 @@ import User from './models/user';
 export class ApiService {
 
 	url = 'http://localhost:9001/api/v1/telecom/';
-	heads!:HttpHeaders;
-	
-	user!:User;
+	heads!: HttpHeaders;
+
+	user!: User;
 
 	//authenticated = false;
 	//headers!: HttpHeaders;
 	//userId!: number;
 
 	constructor(private http: HttpClient, private router: Router) {
-		let header =localStorage.getItem("heads");
-		if(header!=null){
-			this.heads=new HttpHeaders({
+		let header = localStorage.getItem("heads");
+		if (header != null) {
+			this.heads = new HttpHeaders({
 				authorization: header
 			});
 
@@ -31,15 +31,15 @@ export class ApiService {
 		}
 	}
 
-	getHeaders():HttpHeaders {
+	getHeaders(): HttpHeaders {
 		return this.heads;
 	}
-	getUserId():number{
+	getUserId(): number {
 		return parseInt(localStorage.getItem("tid")!);
 	}
 
-	isAuthenticated():boolean{
-		return localStorage.getItem("tid") !=null;
+	isAuthenticated(): boolean {
+		return localStorage.getItem("tid") != null;
 	}
 
 	login(email: string, password: string, callback: any): void {
@@ -49,21 +49,21 @@ export class ApiService {
 		});
 
 		this.http.get(`${this.url}user?email=${email}`, { headers: head }).subscribe((resp) => {
-			localStorage.setItem("tid",resp.toString());
-			localStorage.setItem("heads",auth);	
-			this.heads=head;		
+			localStorage.setItem("tid", resp.toString());
+			localStorage.setItem("heads", auth);
+			this.heads = head;
 			callback();
 		});
 	}
 
 	//@PostMapping("/user")
 	//public ResponseEntity<User> createNewUser(@RequestBody @Valid User user){
-	createNewUser(user:User, callback:any):void{
-		this.http.post(`${this.url}newuser`, user).subscribe((resp)=>{
-			let auth= 'Basic ' + btoa(user.email + ':' + user.password);			
-			
-			localStorage.setItem("tid",resp.toString());
-			localStorage.setItem("heads",auth);	
+	createNewUser(user: User, callback: any): void {
+		this.http.post(`${this.url}newuser`, user).subscribe((resp) => {
+			let auth = 'Basic ' + btoa(user.email + ':' + user.password);
+
+			localStorage.setItem("tid", resp.toString());
+			localStorage.setItem("heads", auth);
 
 			this.heads = new HttpHeaders({
 				authorization: auth
@@ -75,22 +75,22 @@ export class ApiService {
 
 	logout(): void {
 		localStorage.clear();
-		this.heads=new HttpHeaders();
+		this.heads = new HttpHeaders();
 		//route
 		this.router.navigate([""]);
 	}
 
-	getUserData(): void {
+	getUserData(): Observable<any> {
 		this.http.get(`${this.url}user/${this.getUserId()}`
-			, { headers: this.getHeaders() }).subscribe(resp=>{
-				this.user=resp as User;
+			, { headers: this.getHeaders() }).subscribe(resp => {
+				this.user = resp as User;
 				console.log(resp);
 				console.log(this.user);
-				
-				
-			});
-	}
 
+
+			});
+		return of(this.user);
+	}
 
 
 	//     ____  __  ______  _   ________
@@ -112,7 +112,7 @@ export class ApiService {
 	createPhone(phone: Phone): Observable<any> {
 		// console.log("this.header");
 		// console.log(this.headers);
-		
+
 		return this.http.post(`${this.url}phones`, phone
 			, { headers: this.getHeaders() });
 	}
@@ -127,38 +127,38 @@ export class ApiService {
 			, { headers: this.getHeaders() });
 	}
 
-	appendPhone(phone:Phone):void{
-		for(let plan of this.user.userPlans){
-			
-			plan.phones.forEach((ph,i)=>{
-				if(ph.phoneNumber===phone.phoneNumber){
-					plan.phones.splice(i,1);
+	appendPhone(phone: Phone): void {
+		for (let plan of this.user.userPlans) {
+
+			plan.phones.forEach((ph, i) => {
+				if (ph.phoneNumber === phone.phoneNumber) {
+					plan.phones.splice(i, 1);
 				}
 			});
 
-			if(plan.id===phone.userPlanId){
+			if (plan.id === phone.userPlanId) {
 				plan.phones.push(phone);
 			}
 		}
 	}
 
-	replacePhone(phone:Phone):void{
-		for(let plan of this.user.userPlans){
-			if(plan.id===phone.userPlanId){
-				plan.phones.forEach((ph,i)=>{
-					if(ph.id===phone.id){
-						plan.phones[i]=phone;
+	replacePhone(phone: Phone): void {
+		for (let plan of this.user.userPlans) {
+			if (plan.id === phone.userPlanId) {
+				plan.phones.forEach((ph, i) => {
+					if (ph.id === phone.id) {
+						plan.phones[i] = phone;
 					}
 				});
 			}
 		}
 	}
-	unappendPhone(phone:Phone):void{
-		for(let plan of this.user.userPlans){
-			if(plan.id===phone.userPlanId){
-				plan.phones.forEach((ph,i)=>{
-					if(ph.id===phone.id){
-						plan.phones.splice(i,1);
+	unappendPhone(phone: Phone): void {
+		for (let plan of this.user.userPlans) {
+			if (plan.id === phone.userPlanId) {
+				plan.phones.forEach((ph, i) => {
+					if (ph.id === phone.id) {
+						plan.phones.splice(i, 1);
 					}
 				});
 			}
