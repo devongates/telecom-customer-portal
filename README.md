@@ -3,12 +3,12 @@
 This application will serve as the customer portal for managing your account with a large telecommunications like Verizon or AT&T. You are encouraged to use your own mobile provider’s customer portal for inspiration. 
 
 ## Functional Requirements :heavy_check_mark:
-- [ ] Users can register for an account and login. Users will only see their information and not another user’s data. For simplicity, you may use Spring Security and Angular interceptors for this requirement. I suggest completing the remaining functionality first then adding security later. 
+- [x] Users can register for an account and login. Users will only see their information and not another user’s data. For simplicity, you may use Spring Security and Angular interceptors for this requirement. I suggest completing the remaining functionality first then adding security later. 
 
 - [x] Users can manage their devices, adding and removing devices at-will, selecting their phone number for each device, and assigning the data plans associated with their bill. 
   - [ ] Users can add new devices and bring over their existing number or have a new number generated. This generated number must be unique (in your database). If an existing number is chosen, it must be removed from a previous device. 
 
-- [ ] There must be 3 data plans to choose from [(see for examples)](https://www.att.com/plans/wireless/). One plan must have different number of devices/lines available: for example, one plan with a single line, and the others having 4 lines. The rules for each plan must be enforced. Hint: validate the number of devices the user has.
+- [x] There must be 3 data plans to choose from [(see for examples)](https://www.att.com/plans/wireless/). One plan must have different number of devices/lines available: for example, one plan with a single line, and the others having 4 lines. The rules for each plan must be enforced. Hint: validate the number of devices the user has.
 
 - [x] Users can see an estimated total cost of the monthly bill based on their selected plan(s). Hint: user can have many plans.  
 ## Technical Requirements :computer:
