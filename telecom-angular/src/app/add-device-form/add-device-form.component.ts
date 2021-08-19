@@ -39,4 +39,13 @@ export class AddDeviceFormComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
+	randomize():void{
+		
+		this.service.generateRandomNumber((num:string)=>{
+			let temp =this.phoneForm.value;
+			temp.phoneNumber =num;
+			this.phoneForm.setValue(temp);
+		});
+	}
+
 }

@@ -23,7 +23,7 @@ export class DeviceListComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.apiService.getUserData();
+		//this.apiService.getUserData();
 	}
 
 	displayLines(max: number): string {

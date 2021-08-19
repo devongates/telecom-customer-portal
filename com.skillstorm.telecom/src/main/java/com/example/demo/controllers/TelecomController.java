@@ -154,6 +154,10 @@ public class TelecomController {
 		return new ResponseEntity<>(service.isNumberInUse(number), HttpStatus.OK);
 	}
 	
+	@GetMapping("/phone/newnumber")
+	public ResponseEntity<String> findNewNumber(){
+		return new ResponseEntity<>(service.generateNumber(), HttpStatus.OK);
+	}
 	
 
 //     ____  __    ___    _   __

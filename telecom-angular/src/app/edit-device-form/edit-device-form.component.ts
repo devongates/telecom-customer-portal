@@ -48,6 +48,7 @@ export class EditDeviceFormComponent implements OnInit {
 	deletePhone(): void {
 		this.apiService.deletePhone(this.phone.id).subscribe(()=>{
 			this.apiService.unappendPhone(this.phone);
+			this.activeModal.close();
 		})
 	}
 

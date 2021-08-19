@@ -166,10 +166,18 @@ export class ApiService {
 		}
 	}
 
-	generateRandomNumber():string{
-		return "2"
-	}
+	generateRandomNumber(callback:any){
 
+		this.http.get(`${this.url}phone/newnumber`, 
+		{ headers: this.getHeaders() }).subscribe((resp) => {
+			callback(resp);
+		});
+
+	}
+// 	@GetMapping("/phone")
+// 	public ResponseEntity<Boolean> isNumberInUse(@RequestParam (value="phonenumber") String number){
+// 		return new ResponseEntity<>(service.isNumberInUse(number), HttpStatus.OK);
+// 	}
 
 
 	//    __  _______ __________  ____  __    ___    _   __

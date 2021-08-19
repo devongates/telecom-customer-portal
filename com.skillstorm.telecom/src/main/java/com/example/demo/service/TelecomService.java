@@ -4,6 +4,7 @@ package com.example.demo.service;
 import java.util.Set;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -121,8 +122,21 @@ public class TelecomService {
 	
 	
 	public boolean isNumberInUse(String number) {
-		return 
-				phoneRepo.findByPhoneNumber(number).isPresent();
+		return phoneRepo.findByPhoneNumber(number).isPresent();
+	}
+	
+
+	public String generateNumber() {
+		Random r=new Random();
+		String out ="";
+		do {
+			out += r.nextInt(9)+1;
+			for(int i=0;i<9;i++) {
+				out +=r.nextInt(10);
+			}
+			
+		}while(isNumberInUse(out));
+		return out;
 	}
 	
 	
@@ -219,6 +233,7 @@ public class TelecomService {
 	public void deletePlan(int planId) {
 		planRepo.deleteById(planId);
 	}
+
 
 
 }
