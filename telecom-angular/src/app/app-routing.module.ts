@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/newuser', component: NewUserComponent },
-  { path: 'plans', component: UserPlansComponent },
+  { path: 'plans', component: PlansComponent },
+  { path: 'myplans', component: UserPlansComponent },
   { path: 'billing', component: BillComponent },
   { path: 'devices', component: DevicePageComponent }
 ];

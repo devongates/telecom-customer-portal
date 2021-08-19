@@ -1,15 +1,38 @@
-<div class="card green-card" style="width: 18rem">
+<div class="card green-card" style="width: 18rem; min-height: 290px">
   <div class="card-body">
-    <h5 class="card-title mb-5">{{ userPlan.plan.name }}</h5>
+    <h5 class="card-title mb-3">{{ userPlan.plan.name }}</h5>
     <p>Lines: {{ userPlan.phones.length }}/{{ userPlan.plan.maxNumLines }}</p>
-    <p>Phones:</p>
-    <table class="table green-table">
+    <h5 class="text-center mt-4">Phones</h5>
+    <table class="table green-table" *ngIf="userPlan.phones">
       <tbody>
         <tr *ngFor="let phone of userPlan.phones">
           <td>{{ phone.phoneName }}</td>
-          <td>{{ formatPhone(phone.phoneNumber) }}</td>
+          <td class="text-end">
+            {{ formatPhone(phone.phoneNumber) }}
+          </td>
         </tr>
       </tbody>
+      <div
+        class="container d-flex justify-content-center my-0 py-0"
+        *ngIf="userPlan.phones.length < userPlan.plan.maxNumLines"
+      >
+        <button class="btn" routerLink="/devices" routerLinkActive="active">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="42"
+            height="42"
+            class="bi bi-plus-circle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+            />
+            <path
+              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+            />
+          </svg>
+        </button>
+      </div>
     </table>
   </div>
 </div>
