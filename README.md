@@ -10,7 +10,7 @@ This application will serve as the customer portal for managing your account wit
 
 - [ ] There must be 3 data plans to choose from [(see for examples)](https://www.att.com/plans/wireless/). One plan must have different number of devices/lines available: for example, one plan with a single line, and the others having 4 lines. The rules for each plan must be enforced. Hint: validate the number of devices the user has.
 
-- [ ] Users can see an estimated total cost of the monthly bill based on their selected plan(s). Hint: user can have many plans.  
+- [x] Users can see an estimated total cost of the monthly bill based on their selected plan(s). Hint: user can have many plans.  
 ## Technical Requirements :computer:
 ### You must use the following technology: 
 - Angular
