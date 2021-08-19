@@ -49,10 +49,6 @@ export class EditDeviceFormComponent implements OnInit {
 		this.apiService.deletePhone(this.phone.id).subscribe(()=>{
 			this.apiService.unappendPhone(this.phone);
 		})
-		// this.deviceService.deletePhone(this.id).subscribe(result => {
-		//   this.localDeviceService.deletePhone(this.id);
-		// })
-		// this.editDeviceService.changeIsEditing(false);
 	}
 
 }

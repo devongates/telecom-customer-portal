@@ -52,6 +52,7 @@ export class ApiService {
 			localStorage.setItem("tid", resp.toString());
 			localStorage.setItem("heads", auth);
 			this.heads = head;
+			this.getUserData();
 			callback();
 		});
 	}
@@ -68,6 +69,7 @@ export class ApiService {
 			this.heads = new HttpHeaders({
 				authorization: auth
 			});
+			this.getUserData();
 
 			callback();
 		});
@@ -76,6 +78,7 @@ export class ApiService {
 	logout(): void {
 		localStorage.clear();
 		this.heads = new HttpHeaders();
+		this.user=new User();
 		//route
 		this.router.navigate([""]);
 	}
@@ -86,8 +89,6 @@ export class ApiService {
 				this.user = resp as User;
 				console.log(resp);
 				console.log(this.user);
-
-
 			});
 		return of(this.user);
 	}
@@ -164,6 +165,12 @@ export class ApiService {
 			}
 		}
 	}
+
+	generateRandomNumber():string{
+		return "2"
+	}
+
+
 
 	//    __  _______ __________  ____  __    ___    _   __
 	//   / / / / ___// ____/ __ \/ __ \/ /   /   |  / | / /

@@ -16,30 +16,14 @@ import { AddDeviceFormComponent } from '../add-device-form/add-device-form.compo
 })
 export class DeviceListComponent implements OnInit {
 
-	//user!: User;
-
-	//deviceList: Array<Phone> = [];
-	//service: UserServiceService;
 
 	constructor(public apiService: ApiService,
 		private localDeviceService: LocalDevicesService,
-		public modalService: NgbModal
-		) {
+		public modalService: NgbModal) {
 	}
 
 	ngOnInit(): void {
-		
 		this.apiService.getUserData();
-		// .subscribe(result => {
-		// 	this.user = result;
-		// });
-
-		// this.apiService.getPhones().subscribe(result => {
-		// 	this.localDeviceService.refreshPhones(result)
-		// })
-		// this.localDeviceService.currentPhones.subscribe(result => {
-		// 	this.deviceList = result;
-		// })
 	}
 
 	displayLines(max: number): string {
