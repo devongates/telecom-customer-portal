@@ -139,7 +139,18 @@ export class ApiService {
 			if(plan.id===phone.userPlanId){
 				plan.phones.push(phone);
 			}
+		}
+	}
 
+	replacePhone(phone:Phone):void{
+		for(let plan of this.user.userPlans){
+			if(plan.id===phone.userPlanId){
+				plan.phones.forEach((ph,i)=>{
+					if(ph.id===phone.id){
+						plan.phones[i]=phone;
+					}
+				});
+			}
 		}
 	}
 

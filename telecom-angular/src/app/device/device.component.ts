@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditDeviceFormComponent } from '../edit-device-form/edit-device-form.component';
 import { EditDeviceService } from '../edit-device.service';
 import Phone from '../models/phone';
 
@@ -11,19 +13,24 @@ export class DeviceComponent implements OnInit {
 
 	@Input() phone!: Phone;
 
-	isEditing: boolean;
+	//isEditing: boolean;
 
-	constructor(private service: EditDeviceService) {
-		this.isEditing = false;
+	constructor(private service: EditDeviceService,
+		public modalService: NgbModal) {
+		//this.isEditing = false;
 	}
 
 	ngOnInit(): void {
 	}
 
 	openEditor() {
-		this.service.changeIsEditing(true);
-		this.service.changePhone(this.phone);
-		window.scroll(0, 0);
+		const modalRef =this.modalService.open(EditDeviceFormComponent);
+		modalRef.componentInstance.name="Update";
+		modalRef.componentInstance.phone=this.phone;
+		//modalRef.componentInstance.userPlanId=id;
+		// this.service.changeIsEditing(true);
+		// this.service.changePhone(this.phone);
+		//window.scroll(0, 0);
 	}
 
 	formatPhone(phone: string): string {
