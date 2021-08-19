@@ -29,16 +29,8 @@ export class EditDeviceFormComponent implements OnInit {
 		, public activeModal: NgbActiveModal) { }
 
 	ngOnInit(): void {
-		// this.editDeviceService.currentPhone.subscribe(phone => {
-		//   const { id, ...rest } = phone;
-		//   this.phoneForm.setValue(rest)
-		//   this.id = id;
-		// })
-
 		const { id, userPlanId, ...rest } = this.phone;
-		this.phoneForm.setValue(rest)
-		//this.id = id;
-
+		this.phoneForm.setValue(rest);
 	}
 
 	onSubmit(): void {
@@ -50,19 +42,13 @@ export class EditDeviceFormComponent implements OnInit {
 			this.apiService.replacePhone(phone);
 			this.activeModal.close();
 		})
-
-		// this.deviceService.updatePhone(this.id, phone).subscribe(result => {
-		//   this.localDeviceService.editPhone(this.id, phone);
-		// });
-		// this.editDeviceService.changeIsEditing(false);
 	}
 
-	// cancelEdit(): void {
-	// 	//this.editDeviceService.changeIsEditing(false);
-	// 	this.activeModal.close();
-	// }
 
 	deletePhone(): void {
+		this.apiService.deletePhone(this.phone.id).subscribe(()=>{
+			this.apiService.unappendPhone(this.phone);
+		})
 		// this.deviceService.deletePhone(this.id).subscribe(result => {
 		//   this.localDeviceService.deletePhone(this.id);
 		// })

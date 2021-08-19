@@ -153,7 +153,17 @@ export class ApiService {
 			}
 		}
 	}
-
+	unappendPhone(phone:Phone):void{
+		for(let plan of this.user.userPlans){
+			if(plan.id===phone.userPlanId){
+				plan.phones.forEach((ph,i)=>{
+					if(ph.id===phone.id){
+						plan.phones.splice(i,1);
+					}
+				});
+			}
+		}
+	}
 
 	//    __  _______ __________  ____  __    ___    _   __
 	//   / / / / ___// ____/ __ \/ __ \/ /   /   |  / | / /
