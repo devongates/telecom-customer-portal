@@ -1,0 +1,16 @@
+<!-- <div class="modal-ful"> -->
+<div class="modal-dialog p-0 m-0" style="min-width: 60rem">
+  <div class="modal-content p-3">
+    <div class="modal-header">
+      <h4 class="modal-title">Plans</h4>
+    </div>
+    <div class="modal-body d-flex">
+      <div class="col" *ngFor="let plan of plans">
+        <button class="btn">
+          <app-plan-card [plan]="plan"></app-plan-card>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>
