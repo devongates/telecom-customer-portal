@@ -12,13 +12,13 @@ export class UserplanService {
   headers!: HttpHeaders;
   userplansUrl = 'http://localhost:9001/api/v1/telecom/userplans';
 
-  constructor(private http: HttpClient, private api: ApiService) {
-    api.getHeaders().subscribe(result => {
-      console.log(result);
+//   constructor(private http: HttpClient, private api: ApiService) {
+//     api.getHeaders().subscribe(result => {
+//       console.log(result);
 
-      this.headers = result;
-    })
-  }
+//       this.headers = result;
+//     })
+//   }
 
   getUserplans(): Observable<any> {
     return this.http.get(this.userplansUrl, { headers: this.headers });

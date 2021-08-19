@@ -18,24 +18,24 @@
 			Plans
 		  </a>
         </li>
-        <li class="nav-item" *ngIf="apiService.authenticated">
+        <li class="nav-item" *ngIf="apiService.isAuthenticated()">
           <a class="nav-link" routerLink="/devices" routerLinkActive="active">
 			Devices
 		  </a>
         </li>
-        <li class="nav-item" *ngIf="apiService.authenticated">
+        <li class="nav-item" *ngIf="apiService.isAuthenticated()">
           <a class="nav-link" routerLink="/billing" routerLinkActive="active">
 			Billing
 		  </a>
         </li>
       </ul>
-      <span class="navbar-text" *ngIf="!apiService.authenticated;else elseBlock">
+      <span class="nav-item" *ngIf="!apiService.isAuthenticated();else elseBlock">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">
 			Login or Sign Up
 		</a>
       </span>
 	  <ng-template #elseBlock>
-		<span class="navbar-text">
+		<span class="nav-item">
 			<a class="nav-link" (click)="apiService.logout()" >
 				Log out
 			</a>

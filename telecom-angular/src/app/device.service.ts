@@ -22,6 +22,8 @@ export class DeviceService {
   }
 
   createPhone(phone: Phone): Observable<any> {
+	  console.log("ehat");
+	  
     return this.http.post(this.phonesUrl, phone);
   }
 
