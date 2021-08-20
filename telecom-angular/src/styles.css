@@ -8,6 +8,10 @@
   --c-peach: #e5b083;
 }
 
+.bigger-modal {
+	min-width: 60rem;
+}
+
 body {
   background-color: var(--c-white);
 }

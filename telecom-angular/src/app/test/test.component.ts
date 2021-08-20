@@ -34,5 +34,7 @@ export class TestComponent implements OnInit {
 		modalRef.componentInstance.userPlanId=id;
 	}
 
+	
+
 
 }
