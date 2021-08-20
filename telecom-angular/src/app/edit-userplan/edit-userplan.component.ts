@@ -37,6 +37,8 @@ export class EditUserplanComponent implements OnInit {
     this.movingPhone.userPlanId = this.movingPlan.id;
     this.service.updatePhone(this.movingPhone.id, this.movingPhone).subscribe(result => {
       this.service.replacePhone(this.movingPhone);
+      this.service.unappendPhone(this.movingPhone);
+      this.service.appendPhone(this.movingPhone);
       this.activeModal.close();
     })
   }
