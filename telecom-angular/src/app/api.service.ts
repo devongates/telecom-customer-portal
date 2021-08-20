@@ -14,7 +14,7 @@ export class ApiService {
 	url = 'http://localhost:9001/api/v1/telecom/';
 	heads!: HttpHeaders;
 
-	user!: User;
+	user: User = new User();
 
 	//authenticated = false;
 	//headers!: HttpHeaders;
@@ -42,7 +42,7 @@ export class ApiService {
 		return localStorage.getItem("tid") != null;
 	}
 
-	login(email: string, password: string, callback: any): void {
+	login(email: string, password: string, callback: ()=>void, notComplete:(err:any)=>void): void {
 		let auth = 'Basic ' + btoa(email + ':' + password);
 		let head = new HttpHeaders({
 			authorization: auth
@@ -54,12 +54,14 @@ export class ApiService {
 			this.heads = head;
 			this.getUserData();
 			callback();
+		},(err)=>{
+			notComplete(err);
 		});
 	}
 
 	//@PostMapping("/user")
 	//public ResponseEntity<User> createNewUser(@RequestBody @Valid User user){
-	createNewUser(user: User, callback: any): void {
+	createNewUser(user: User, callback: ()=>void, notComplete:(err:any)=>void): void {
 		this.http.post(`${this.url}newuser`, user).subscribe((resp) => {
 			let auth = 'Basic ' + btoa(user.email + ':' + user.password);
 
@@ -72,6 +74,8 @@ export class ApiService {
 			this.getUserData();
 
 			callback();
+		},(err)=>{
+			notComplete(err);
 		});
 	}
 
@@ -87,8 +91,6 @@ export class ApiService {
 		this.http.get(`${this.url}user/${this.getUserId()}`
 			, { headers: this.getHeaders() }).subscribe(resp => {
 				this.user = resp as User;
-				console.log(resp);
-				console.log(this.user);
 			});
 		return of(this.user);
 	}
@@ -111,9 +113,6 @@ export class ApiService {
 	}
 
 	createPhone(phone: Phone): Observable<any> {
-		// console.log("this.header");
-		// console.log(this.headers);
-
 		return this.http.post(`${this.url}phones`, phone
 			, { headers: this.getHeaders() });
 	}
@@ -166,10 +165,17 @@ export class ApiService {
 		}
 	}
 
-	generateRandomNumber(): string {
-		return "2"
-	}
 
+	generateRandomNumber(callback:any){
+		this.http.get(`${this.url}phone/newnumber`, 
+		{ headers: this.getHeaders() }).subscribe((resp) => {
+			callback(resp);
+		});
+	}
+// 	@GetMapping("/phone")
+// 	public ResponseEntity<Boolean> isNumberInUse(@RequestParam (value="phonenumber") String number){
+// 		return new ResponseEntity<>(service.isNumberInUse(number), HttpStatus.OK);
+// 	}
 
 
 	//    __  _______ __________  ____  __    ___    _   __

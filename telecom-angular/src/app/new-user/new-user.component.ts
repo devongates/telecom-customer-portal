@@ -9,7 +9,9 @@ import User from '../models/user';
   styleUrls: ['./new-user.component.css']
 })
 export class NewUserComponent implements OnInit {
-
+	submitted=false;
+	badPw=false;
+	badRequest=false;
 	newUser:User;
 
 	constructor(private apiService: ApiService, private router: Router) {
@@ -20,16 +22,19 @@ export class NewUserComponent implements OnInit {
 	}
 
 	onSubmit(pw2:string):void{
-		// this.apiService.login(idk.email,idk.password,()=>{
-		// 	this.router.navigate(["devices"]);
-		// });
+		this.submitted=true;
+		this.badRequest=false;
 		if(pw2===this.newUser.password){
+			this.badPw=false;
+			this.badRequest=false;
 			this.apiService.createNewUser(this.newUser,()=>{
 				this.router.navigate(["devices"]);
+			},(err)=>{
+				this.badRequest=true;
 			});
 		}
 		else{
-			alert("passwords don't match")
+			this.badPw=true;
 		}
 		
 	}

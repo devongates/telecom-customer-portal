@@ -11,6 +11,7 @@ import { UserServiceService } from '../user-service.service';
 	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+	isBad=false;
 
 	constructor(private apiService: ApiService, private router: Router) {
 	}
@@ -21,6 +22,11 @@ export class LoginComponent implements OnInit {
 	onSubmit(idk:any):void{
 		this.apiService.login(idk.email,idk.password,()=>{
 			this.router.navigate(["devices"]);
+		},
+		(err)=>{
+			this.isBad=true;
+			
 		});
+		
 	}
 }
