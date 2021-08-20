@@ -3,16 +3,20 @@ package com.example.demo.models;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "PLAN")
@@ -42,7 +46,7 @@ public class Plan {
 	private BigDecimal costPerLine;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="plan")
+	@OneToMany(mappedBy="planId", cascade = CascadeType.ALL)
 	private Set<UserPlan> userPlans;
 	
 	

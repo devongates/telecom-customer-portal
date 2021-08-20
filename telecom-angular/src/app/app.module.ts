@@ -26,6 +26,8 @@ import { UserPlanComponent } from './user-plan/user-plan.component';
 import { UserPlansComponent } from './user-plans/user-plans.component';
 import { BillComponent } from './bill/bill.component';
 import { AddPlanFormComponent } from './add-plan-form/add-plan-form.component';
+import { ManagePlansComponent } from './manage-plans/manage-plans.component';
+import { EditUserplanComponent } from './edit-userplan/edit-userplan.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { AddPlanFormComponent } from './add-plan-form/add-plan-form.component';
     UserPlanComponent,
     UserPlansComponent,
     BillComponent,
-    AddPlanFormComponent
+    AddPlanFormComponent,
+    ManagePlansComponent,
+    EditUserplanComponent
   ],
   imports: [
     BrowserModule,
