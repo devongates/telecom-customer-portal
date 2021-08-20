@@ -1,14 +1,12 @@
 <div class="container">
-  <div>
-    <h1 class="blue-text mb-5">My Plans</h1>
-  </div>
+  <h1 class="blue-text mb-5">My Plans</h1>
   <div class="container">
     <div class="row gy-5">
-      <div class="col" *ngFor="let userplan of userPlans">
+      <div class="col-3" *ngFor="let userplan of apiService.user.userPlans">
         <app-user-plan [userPlan]="userplan"></app-user-plan>
       </div>
-      <div class="col d-flex">
-        <button class="btn" (click)="openCreator(userId)">
+      <div class="col-3 d-flex">
+        <button class="btn" (click)="openCreator()">
           <div
             class="card white-card d-flex justify-content-center"
             style="

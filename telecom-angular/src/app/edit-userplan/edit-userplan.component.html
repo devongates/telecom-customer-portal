@@ -1,0 +1,58 @@
+<div class="modal-dialog p-0 m-0" style="min-width: 60rem">
+  <div class="modal-content p-3">
+    <div class="modal-header">
+      <h4 class="modal-title blue-text">{{ userplan.plan.name }}</h4>
+    </div>
+    <div class="modal-body">
+      <table class="table white-table" *ngIf="userplan.phones.length > 0">
+        <thead>
+          <tr>
+            <th scope="col">Phone Name</th>
+            <th scope="col">Phone Type</th>
+            <th scope="col">Phone Number</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let phone of userplan.phones">
+            <td>{{ phone.phoneName }}</td>
+            <td>{{ phone.phoneType }}</td>
+            <td>{{ formatPhone(phone.phoneNumber) }}</td>
+            <td>
+              <button class="btn btn-sm blue-btn">Move</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button
+      class="btn white-text"
+      style="background-color: #ad5d4e"
+      (click)="isWarning = true"
+    >
+      Remove Plan
+    </button>
+    <div *ngIf="isWarning" class="container mt-4">
+      <p class="blue-text text-center">
+        Removing this plan will also permanently remove all phones associated
+        with the plan! Continue?
+      </p>
+      <div class="row px-5">
+        <div class="col-6 d-flex justify-content-end">
+          <button
+            class="btn white-text"
+            style="background-color: #ad5d4e"
+            (click)="removePlan()"
+          >
+            Remove Plan
+          </button>
+        </div>
+        <div class="col-6 d-flex justify-content-start">
+          <button class="btn blue-btn" (click)="isWarning = false">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

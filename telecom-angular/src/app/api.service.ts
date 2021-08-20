@@ -82,7 +82,7 @@ export class ApiService {
 	logout(): void {
 		localStorage.clear();
 		this.heads = new HttpHeaders();
-		this.user=new User();
+		this.user = new User();
 		//route
 		this.router.navigate([""]);
 	}
@@ -165,13 +165,12 @@ export class ApiService {
 		}
 	}
 
-	generateRandomNumber(callback:any){
 
+	generateRandomNumber(callback:any){
 		this.http.get(`${this.url}phone/newnumber`, 
 		{ headers: this.getHeaders() }).subscribe((resp) => {
 			callback(resp);
 		});
-
 	}
 // 	@GetMapping("/phone")
 // 	public ResponseEntity<Boolean> isNumberInUse(@RequestParam (value="phonenumber") String number){
@@ -197,7 +196,7 @@ export class ApiService {
 			, { headers: this.getHeaders() });
 	}
 
-	createUserplan(userplan: UserPlan): Observable<any> {
+	createUserplan(userplan: Object): Observable<any> {
 		return this.http.post(this.userplansUrl, userplan
 			, { headers: this.getHeaders() });
 	}
@@ -210,6 +209,14 @@ export class ApiService {
 	deleteUserplan(id: number): Observable<any> {
 		return this.http.delete(`${this.userplansUrl}/${id}`
 			, { headers: this.getHeaders() });
+	}
+
+	createLocalUserplan(userplan: UserPlan): void {
+		this.user.userPlans.push(userplan);
+	}
+
+	deleteLocalUserplan(delUserplan: UserPlan): void {
+		this.user.userPlans = this.user.userPlans.filter(userplan => userplan != delUserplan);
 	}
 
 

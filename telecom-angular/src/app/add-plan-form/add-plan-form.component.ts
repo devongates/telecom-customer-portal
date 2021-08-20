@@ -11,7 +11,7 @@ import UserPlan from '../models/userPlan';
 })
 export class AddPlanFormComponent implements OnInit {
 
-  @Input() userId!: number;
+  userId!: number;
   userPlan!: UserPlan;
   plans!: Array<Plan>;
 
@@ -19,8 +19,26 @@ export class AddPlanFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getPlans().subscribe(result => {
-      console.log(result);
       this.plans = result;
+    })
+    this.service.getUserData().subscribe(result => {
+      this.userId = result.id;
+    })
+  }
+
+  addPlan(plan: Plan) {
+
+    const planObject = { userId: this.userId, planId: plan.id };
+
+    this.service.createUserplan(planObject).subscribe(result => {
+      const userPlan = new UserPlan();
+      userPlan.userId = this.userId;
+      userPlan.planId = plan.id;
+      userPlan.plan = plan;
+      userPlan.id = result.id;
+
+      this.service.createLocalUserplan(userPlan);
+      this.activeModal.close();
     })
   }
 

@@ -15,21 +15,19 @@ export class UserPlansComponent implements OnInit {
   userPlans: Array<UserPlan> = [];
   userId!: number;
 
-  constructor(private service: ApiService, public modalService: NgbModal) { }
+  constructor(public apiService: ApiService, public modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.service.getUserplans().subscribe(result => {
-      this.userPlans = result;
-    })
-    this.service.getUserData().subscribe(result => {
+    this.apiService.getUserData().subscribe(result => {
+      console.log(result);
+
       this.userId = result.id;
     })
   }
 
-  openCreator(userId: number): void {
+  openCreator(): void {
     const modalRef = this.modalService.open(AddPlanFormComponent);
     modalRef.componentInstance.name = "AddModal";
-    modalRef.componentInstance.userId = userId;
   }
 
 }
