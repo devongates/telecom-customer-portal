@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../api.service';
+import Phone from '../models/phone';
 import UserPlan from '../models/userPlan';
 
 @Component({
@@ -12,8 +13,11 @@ export class EditUserplanComponent implements OnInit {
 
   @Input() userplan!: UserPlan;
   isWarning: boolean = false;
+  isMoving: boolean = false;
+  movingPhone!: Phone;
+  movingPlan!: UserPlan;
 
-  constructor(private activeModal: NgbActiveModal, private service: ApiService) { }
+  constructor(private activeModal: NgbActiveModal, public service: ApiService) { }
 
   ngOnInit(): void { }
 
@@ -29,4 +33,11 @@ export class EditUserplanComponent implements OnInit {
     })
   }
 
+  movePhone(): void {
+    this.movingPhone.userPlanId = this.movingPlan.id;
+    this.service.updatePhone(this.movingPhone.id, this.movingPhone).subscribe(result => {
+      this.service.replacePhone(this.movingPhone);
+      this.activeModal.close();
+    })
+  }
 }

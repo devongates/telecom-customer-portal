@@ -1,6 +1,9 @@
 <div class="container">
   <h1 class="blue-text mb-5">My Plans</h1>
   <div class="container">
+    <h5 class="blue-text" *ngIf="apiService.user.userPlans.length === 0">
+      Enroll in a plan to get started
+    </h5>
     <div class="row gy-5">
       <div class="col-3" *ngFor="let userplan of apiService.user.userPlans">
         <app-user-plan [userPlan]="userplan"></app-user-plan>

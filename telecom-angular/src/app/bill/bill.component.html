@@ -45,9 +45,19 @@
   </div>
 </div> -->
 <div class="container">
-  <h1>My Bill</h1>
-  <div>
-    <table class="table">
+  <h1 class="blue-text mb-4">My Bill</h1>
+  <div class="container mt-5" *ngIf="plans.length === 0; else bill">
+    <h2 class="blue-text">Nothing to see here...</h2>
+    <a
+      class="blue-text nav-link mx-0 px-0"
+      routerLink="/myplans"
+      routerLinkActive="Active"
+      style="font-size: 1.25rem"
+      >Enroll in a plan to view your bill</a
+    >
+  </div>
+  <ng-template #bill>
+    <table class="table white-table">
       <thead>
         <tr>
           <th scope="col">Plan</th>
@@ -72,5 +82,5 @@
         <th scope="row">${{ total }}</th>
       </tfoot>
     </table>
-  </div>
+  </ng-template>
 </div>

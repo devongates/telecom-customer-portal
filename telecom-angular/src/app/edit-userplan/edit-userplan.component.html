@@ -19,16 +19,107 @@
             <td>{{ phone.phoneType }}</td>
             <td>{{ formatPhone(phone.phoneNumber) }}</td>
             <td>
-              <button class="btn btn-sm blue-btn">Move</button>
+              <button
+                class="btn btn-sm blue-btn"
+                (click)="
+                  movingPhone = phone; isMoving = true; movingPlan = userplan
+                "
+              >
+                Move
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
+      <div *ngIf="isMoving" class="row">
+        <div class="col-4 align-self-center d-flex justify-content-end">
+          <div class="card green-card">
+            <div class="card-body">
+              <h5 class="white-text card-text text-center">
+                {{ movingPhone.phoneName }}
+              </h5>
+              <p class="white-text text-center my-1">
+                {{ movingPhone.phoneType }}
+              </p>
+              <p class="white-text text-center my-1">
+                {{ formatPhone(movingPhone.phoneNumber) }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 align-self-center d-flex justify-content-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-arrow-right"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+            />
+          </svg>
+        </div>
+        <div
+          class="
+            col-4
+            align-self-center
+            d-flex
+            flex-column
+            justify-content-start
+          "
+        >
+          <h4 class="blue-text text-center">Choose a Plan</h4>
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              *ngFor="let plan of service.user.userPlans"
+              style="cursor: pointer"
+              (click)="movingPlan = plan"
+            >
+              <div class="row">
+                <div class="col">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    class="bi bi-check"
+                    viewBox="0 0 16 16"
+                    *ngIf="movingPlan == plan"
+                  >
+                    <path
+                      d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+                    />
+                  </svg>
+                </div>
+                <div class="col">{{ plan.plan.name }}</div>
+                <div class="col">
+                  {{ plan.phones.length }}/{{ plan.plan.maxNumLines }}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col d-flex justify-content-end">
+            <button class="btn blue-btn" (click)="movePhone()">Move</button>
+          </div>
+          <div class="col d-flex justify-content-start">
+            <button class="btn green-btn" (click)="isMoving = false">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
     <button
       class="btn white-text"
       style="background-color: #ad5d4e"
       (click)="isWarning = true"
+      *ngIf="!isMoving"
     >
       Remove Plan
     </button>
