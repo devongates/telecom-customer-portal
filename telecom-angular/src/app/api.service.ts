@@ -42,7 +42,7 @@ export class ApiService {
 		return localStorage.getItem("tid") != null;
 	}
 
-	login(email: string, password: string, callback: any): void {
+	login(email: string, password: string, callback: ()=>void, notComplete:(err:any)=>void): void {
 		let auth = 'Basic ' + btoa(email + ':' + password);
 		let head = new HttpHeaders({
 			authorization: auth
@@ -54,12 +54,14 @@ export class ApiService {
 			this.heads = head;
 			this.getUserData();
 			callback();
+		},(err)=>{
+			notComplete(err);
 		});
 	}
 
 	//@PostMapping("/user")
 	//public ResponseEntity<User> createNewUser(@RequestBody @Valid User user){
-	createNewUser(user: User, callback: any): void {
+	createNewUser(user: User, callback: ()=>void, notComplete:(err:any)=>void): void {
 		this.http.post(`${this.url}newuser`, user).subscribe((resp) => {
 			let auth = 'Basic ' + btoa(user.email + ':' + user.password);
 
@@ -72,6 +74,8 @@ export class ApiService {
 			this.getUserData();
 
 			callback();
+		},(err)=>{
+			notComplete(err);
 		});
 	}
 

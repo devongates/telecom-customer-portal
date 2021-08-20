@@ -51,6 +51,7 @@ export class AddDeviceFormComponent implements OnInit {
 	}
 
 	get f() { return this.phoneForm.controls; }
+	
 	randomize():void{
 		
 		this.service.generateRandomNumber((num:string)=>{
